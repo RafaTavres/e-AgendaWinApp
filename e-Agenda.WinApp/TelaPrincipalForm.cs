@@ -7,9 +7,10 @@ namespace e_Agenda.WinApp
 {
     public partial class TelaPrincipalForm : Form
     {
+        UserControl listagem;
         private ControladorBase controlador;
-        private RepositorioContato repositorioContato = new RepositorioContato(new List<EntidadeBase>());
-        private RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<EntidadeBase>());
+        private RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
+        private RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
 
         public TelaPrincipalForm()
         {
@@ -47,7 +48,7 @@ namespace e_Agenda.WinApp
 
         private void ConfigurarListagem(ControladorBase controladorBase)
         {
-            UserControl listagem = controladorBase.ObterListagem();
+            listagem = controladorBase.ObterListagem();
 
             listagem.Dock = DockStyle.Fill;
 
@@ -62,6 +63,7 @@ namespace e_Agenda.WinApp
             btnInserir.ToolTipText = controlador.ToolTipInserir;
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipExcluir;
+            btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
 
         }
 
@@ -85,6 +87,13 @@ namespace e_Agenda.WinApp
             if (VerificaControladorVazio(controlador)) ;
             else
                 controlador.Excluir();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (VerificaControladorVazio(controlador)) ;
+            else
+                listagem = controlador.Filtrar();
         }
         private bool VerificaControladorVazio(ControladorBase controlador)
         {

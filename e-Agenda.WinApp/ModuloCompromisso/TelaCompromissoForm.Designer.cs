@@ -105,20 +105,22 @@
             // datePickerHoraDeInicio
             // 
             datePickerHoraDeInicio.CustomFormat = "HH:mm";
-            datePickerHoraDeInicio.Format = DateTimePickerFormat.Custom;
+            datePickerHoraDeInicio.Format = DateTimePickerFormat.Time;
             datePickerHoraDeInicio.Location = new Point(112, 105);
             datePickerHoraDeInicio.Name = "datePickerHoraDeInicio";
             datePickerHoraDeInicio.Size = new Size(108, 23);
             datePickerHoraDeInicio.TabIndex = 12;
+            datePickerHoraDeInicio.Value = new DateTime(2023, 5, 18, 14, 52, 34, 0);
             // 
             // datePickerHoraTermino
             // 
             datePickerHoraTermino.CustomFormat = "HH:mm";
-            datePickerHoraTermino.Format = DateTimePickerFormat.Custom;
+            datePickerHoraTermino.Format = DateTimePickerFormat.Time;
             datePickerHoraTermino.Location = new Point(112, 134);
             datePickerHoraTermino.Name = "datePickerHoraTermino";
             datePickerHoraTermino.Size = new Size(108, 23);
             datePickerHoraTermino.TabIndex = 13;
+            datePickerHoraTermino.Value = new DateTime(2023, 5, 18, 14, 53, 0, 0);
             // 
             // checkBoxTemContato
             // 
@@ -249,7 +251,8 @@
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "TelaCompromissoForm";
-            Text = "TelaCompromissoForm";
+            ShowIcon = false;
+            Text = "Compromissos";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);

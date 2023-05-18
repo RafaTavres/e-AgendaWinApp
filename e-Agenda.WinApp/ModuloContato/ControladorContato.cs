@@ -12,7 +12,7 @@ namespace e_Agenda.WinApp.ModuloContato
         private RepositorioContato repositorioContato;
         private ListagemContatoControl listagemContato;
 
-        public ControladorContato(RepositorioBase repositorio)
+        public ControladorContato(RepositorioBase<Contato> repositorio)
         {
             this.repositorioContato = (RepositorioContato)repositorio;
         }
@@ -22,6 +22,8 @@ namespace e_Agenda.WinApp.ModuloContato
         public override string ToolTipEditar { get { return "Editar Contato existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
+
+        public override string ToolTipFiltrar { get { return "Filtrar Contatos"; } }
 
         public override void Editar()
         {
@@ -93,7 +95,7 @@ namespace e_Agenda.WinApp.ModuloContato
 
         private void CarregarContatos()
         {
-            List<EntidadeBase> contatos = repositorioContato.RetornarTodos();     
+            List<Contato> contatos = repositorioContato.RetornarTodos();     
             listagemContato.AtualizarRegistros(contatos);
         }
 
@@ -110,6 +112,11 @@ namespace e_Agenda.WinApp.ModuloContato
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Contatos";
+        }
+
+        public override UserControl Filtrar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace e_Agenda.WinApp.ModuloContato
             InitializeComponent();
         }
 
-        public void AtualizarRegistros(List<EntidadeBase> contatos)
+        public void AtualizarRegistros(List<Contato> contatos)
         {
             listContato.Items.Clear();
 

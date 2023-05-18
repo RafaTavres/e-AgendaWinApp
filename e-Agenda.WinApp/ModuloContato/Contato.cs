@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
-    public class Contato : EntidadeBase
+    public class Contato : EntidadeBase<Contato>
     {
         public string nome;
         public string telefone;
@@ -24,9 +24,8 @@ namespace e_Agenda.WinApp.ModuloContato
             this.empresa = empresa;
         }
 
-        public override void Atualizar(EntidadeBase entidadeAtualizada)
+        public override void Atualizar(Contato contato)
         {
-            Contato contato= (Contato)entidadeAtualizada;
              nome = contato.nome;
              telefone = contato.telefone;
              email = contato.email;

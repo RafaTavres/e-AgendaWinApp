@@ -18,7 +18,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             InitializeComponent();
         }
-        public void AtualizarRegistros(List<EntidadeBase> compromissos)
+        public void AtualizarRegistros(List<Compromisso> compromissos)
         {
            listCompromissos.Items.Clear();
 

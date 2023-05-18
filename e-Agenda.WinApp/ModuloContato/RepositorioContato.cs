@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
-    public class RepositorioContato : RepositorioBase
+    public class RepositorioContato : RepositorioBase<Contato>
     {
-        public RepositorioContato(List<EntidadeBase> listaDeEntidades)
+        public RepositorioContato(List<Contato> listaDeEntidades)
         {
             listaEntidades = listaDeEntidades;
         }
         public override Contato Busca(int id)
         {
-            return (Contato)base.Busca(id);
+            return base.Busca(id);
         }
 
-        public override bool VerificaObjetosComErro(EntidadeBase entidade)
+        public override bool VerificaObjetosComErro(Contato c)
         {
             throw new NotImplementedException();
         }

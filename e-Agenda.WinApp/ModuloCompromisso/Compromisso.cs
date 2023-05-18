@@ -10,7 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class Compromisso : EntidadeBase
+    public class Compromisso : EntidadeBase<Compromisso>
     {
         public string assunto;
         public string local;
@@ -31,9 +31,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             this.contatorelacionado = contato;
         }
 
-        public override void Atualizar(EntidadeBase entidadeAtualizada)
+        public override void Atualizar(Compromisso compromisso)
         {
-            Compromisso compromisso = (Compromisso)entidadeAtualizada;
             assunto = compromisso.assunto;
             local = compromisso.local;
             data = compromisso.data;
@@ -56,8 +55,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 $"| Local: {local} " +
                 $"| É Remoto?: {ehRemoto} " +
                 $"| Data: {data.ToString("dd/MMM/yyyy")} " +
-                $"| Hora De Inicio: {horaDeInicio.ToString("dd/MMM/yyyy")} " +                                
-                $"| Hora De Término: {horaDoTermino.ToString("dd/MMM/yyyy")} ";
+                $"| Hora De Inicio: {horaDeInicio.ToString("HH:mm")} " +                                
+                $"| Hora De Término: {horaDoTermino.ToString("HH:mm")} ";
         }
     
     }

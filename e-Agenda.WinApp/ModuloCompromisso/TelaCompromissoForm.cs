@@ -65,7 +65,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
 
             Contato contato = null;
-            if (cmbBoxListaDeContatos.Enabled == false)
+            if (cmbBoxListaDeContatos.SelectedItem == null || cmbBoxListaDeContatos.Enabled == false)
             {
                 contato = new Contato("Não Informado", "Não Informado", "Não Informado", "Não Informado", "Não Informado");
             }
@@ -82,11 +82,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void checkBoxTemContato_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxTemContato.Checked)
+            if (checkBoxTemContato.Checked == true)
             {
                 cmbBoxListaDeContatos.Enabled = true;
             }
-            else if (checkBoxTemContato.Checked)
+            else if (checkBoxTemContato.Checked == false)
             {
                 cmbBoxListaDeContatos.Enabled = false;
             }

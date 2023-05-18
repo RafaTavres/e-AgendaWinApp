@@ -41,6 +41,7 @@
             btnInserir = new ToolStripButton();
             btnEditar = new ToolStripButton();
             btnDeletar = new ToolStripButton();
+            btnFiltrar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             statusStrip1 = new StatusStrip();
@@ -115,7 +116,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, toolStripSeparator1, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnDeletar, btnFiltrar, toolStripSeparator1, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1071, 45);
@@ -157,6 +158,18 @@
             btnDeletar.Size = new Size(42, 42);
             btnDeletar.Text = "Deletar";
             btnDeletar.Click += btnDeletar_Click;
+            // 
+            // btnFiltrar
+            // 
+            btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFiltrar.Image = Properties.Resources.filtro;
+            btnFiltrar.ImageScaling = ToolStripItemImageScaling.None;
+            btnFiltrar.ImageTransparentColor = Color.Magenta;
+            btnFiltrar.Name = "btnFiltrar";
+            btnFiltrar.Padding = new Padding(7);
+            btnFiltrar.Size = new Size(42, 42);
+            btnFiltrar.Text = "Filtro";
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // toolStripSeparator1
             // 
@@ -240,5 +253,6 @@
         private ToolStripButton btnDeletar;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel lblTipoCadastro;
+        private ToolStripButton btnFiltrar;
     }
 }

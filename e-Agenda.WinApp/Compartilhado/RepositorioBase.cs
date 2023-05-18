@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class RepositorioBase
+    public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
     {
         protected int id = 1;
-        protected List<EntidadeBase> listaEntidades = new List<EntidadeBase>();
-        public abstract bool VerificaObjetosComErro(EntidadeBase entidade);
+        protected List<TEntidade> listaEntidades = new List<TEntidade>();
+        public abstract bool VerificaObjetosComErro(TEntidade entidade);
 
         private int IncrementaId()
         {
             return id++;
         }
-        public void Inserir(EntidadeBase entidade)
+        public void Inserir(TEntidade entidade)
         {
             entidade.id = id;
             listaEntidades.Add(entidade);
             IncrementaId();
         }
-        public void Atualizar(int id, EntidadeBase entidade)
+        public void Atualizar(int id, TEntidade entidade)
         {
-            EntidadeBase entidade2 = Busca(id);
+            TEntidade entidade2 = Busca(id);
             entidade2.Atualizar(entidade);
         }
-        public virtual EntidadeBase Busca(int id)
+        public virtual TEntidade Busca(int id)
         {
             return listaEntidades.FirstOrDefault(x => x.id == id);
 
@@ -38,7 +38,7 @@ namespace e_Agenda.WinApp.Compartilhado
              listaEntidades.Remove(Busca(id));
             
         }
-        public virtual List<EntidadeBase> RetornarTodos()
+        public virtual List<TEntidade> RetornarTodos()
         {
             return listaEntidades;
         }

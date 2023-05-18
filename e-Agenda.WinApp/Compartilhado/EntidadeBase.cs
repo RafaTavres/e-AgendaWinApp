@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class EntidadeBase
+    public abstract class EntidadeBase<TEntidade>
     {
         public int id;
 
-        public abstract void Atualizar(EntidadeBase entidadeAtualizada);
+        public abstract void Atualizar(TEntidade entidadeAtualizada);
     }
    
 }

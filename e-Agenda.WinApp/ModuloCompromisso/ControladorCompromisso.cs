@@ -14,7 +14,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         private ListagemCompromissoControl listagemCompromisso;
         public RepositorioContato repositorioContato;
 
-        public ControladorCompromisso(RepositorioBase repositorio,RepositorioContato repositorioContato)
+        public ControladorCompromisso(RepositorioBase<Compromisso> repositorio,RepositorioContato repositorioContato)
         {
             this.repositorioCompromisso = (RepositorioCompromisso)repositorio;
             this.repositorioContato = repositorioContato;
@@ -25,6 +25,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override string ToolTipEditar { get { return "Editar Compromisso existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir Compromisso existente"; } }
+
+        public override string ToolTipFiltrar { get { return "Filtrar Compromissos"; } }
 
         public override void Editar()
         {
@@ -55,7 +57,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         }
         private void CarregarCompromissos()
         {
-            List<EntidadeBase> compromissos = repositorioCompromisso.RetornarTodos();
+            List<Compromisso> compromissos = repositorioCompromisso.RetornarTodos();
             listagemCompromisso.AtualizarRegistros(compromissos);
         }
 
@@ -114,6 +116,23 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Compromissos";
+        }
+
+        public override UserControl Filtrar()
+        {
+            TelaFiltroDeCompromissoForm tl = new(repositorioCompromisso);
+            DialogResult opcaoEscolhida = tl.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                if (listagemCompromisso == null)
+                    listagemCompromisso = new ListagemCompromissoControl();
+
+                listagemCompromisso.AtualizarRegistros(tl.listaFiltrada);
+
+            }
+            return listagemCompromisso;
+
         }
     }
 }
