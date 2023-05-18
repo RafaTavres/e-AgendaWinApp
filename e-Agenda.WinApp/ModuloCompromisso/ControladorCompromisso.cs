@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso.Dominio;
 using e_Agenda.WinApp.ModuloContato;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,14 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public override string ToolTipExcluir { get { return "Excluir Compromisso existente"; } }
 
         public override string ToolTipFiltrar { get { return "Filtrar Compromissos"; } }
+
+        public override bool BotaoInserirAtivado { get { return true; } }
+
+        public override bool BotaoDeletarAtivado { get { return true; } }
+
+        public override bool BotaoEditarAtivado { get { return true; } }
+
+        public override bool BotaoFiltrarAtivado { get { return true; } }
 
         public override void Editar()
         {
@@ -58,6 +67,24 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         private void CarregarCompromissos()
         {
             List<Compromisso> compromissos = repositorioCompromisso.RetornarTodos();
+            listagemCompromisso.AtualizarRegistros(compromissos);
+        }
+        private void CarregarCompromissosComFiltro(StatusCompromissoEnum statusCompromisso, DateTime dataInicial, DateTime dataFinal)
+        {
+            List<Compromisso> compromissos;
+            switch(statusCompromisso)
+            {
+                case StatusCompromissoEnum.Futuros:
+                    compromissos = repositorioCompromisso.RetornarCompromissosParaOFuturo(dataInicial, dataFinal);
+                    break;
+                case StatusCompromissoEnum.Passados:
+                    compromissos = repositorioCompromisso.RetornarCompromissosParaOPassado();
+                    break;
+                default:
+                    compromissos = repositorioCompromisso.RetornarTodos();
+                    break;
+            }
+
             listagemCompromisso.AtualizarRegistros(compromissos);
         }
 
@@ -118,21 +145,18 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             return "Cadastro de Compromissos";
         }
 
-        public override UserControl Filtrar()
+        public override void Filtrar()
         {
-            TelaFiltroDeCompromissoForm tl = new(repositorioCompromisso);
-            DialogResult opcaoEscolhida = tl.ShowDialog();
+            TelaFiltroDeCompromissoForm tl = new();
 
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tl.ShowDialog() == DialogResult.OK)
             {
-                if (listagemCompromisso == null)
-                    listagemCompromisso = new ListagemCompromissoControl();
+                StatusCompromissoEnum statusCompromisso = tl.StatusSelecionado;
+                DateTime dataFinal = tl.DataDetermino.Date;
+                DateTime dataInicial = tl.DataDeInicio.Date;
 
-                listagemCompromisso.AtualizarRegistros(tl.listaFiltrada);
-
-            }
-            return listagemCompromisso;
-
+                CarregarCompromissosComFiltro(statusCompromisso, dataInicial, dataFinal);
+            }           
         }
     }
 }

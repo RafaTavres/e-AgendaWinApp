@@ -17,6 +17,14 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override string ToolTipFiltrar => throw new NotImplementedException();
 
+        public override bool BotaoInserirAtivado => throw new NotImplementedException();
+
+        public override bool BotaoDeletarAtivado => throw new NotImplementedException();
+
+        public override bool BotaoEditarAtivado => throw new NotImplementedException();
+
+        public override bool BotaoFiltrarAtivado => throw new NotImplementedException();
+
         public override void Editar()
         {
             throw new NotImplementedException();
@@ -27,7 +35,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         }
 
-        public override UserControl Filtrar()
+        public override void Filtrar()
         {
             throw new NotImplementedException();
         }

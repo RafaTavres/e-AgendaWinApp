@@ -90,7 +90,7 @@
             // datePickerDataFinal
             // 
             datePickerDataFinal.CustomFormat = "HH:mm";
-            datePickerDataFinal.Format = DateTimePickerFormat.Custom;
+            datePickerDataFinal.Format = DateTimePickerFormat.Short;
             datePickerDataFinal.Location = new Point(352, 35);
             datePickerDataFinal.Name = "datePickerDataFinal";
             datePickerDataFinal.Size = new Size(108, 23);
@@ -108,7 +108,7 @@
             // datePickerDataInicio
             // 
             datePickerDataInicio.CustomFormat = "HH:mm";
-            datePickerDataInicio.Format = DateTimePickerFormat.Custom;
+            datePickerDataInicio.Format = DateTimePickerFormat.Short;
             datePickerDataInicio.Location = new Point(115, 35);
             datePickerDataInicio.Name = "datePickerDataInicio";
             datePickerDataInicio.Size = new Size(108, 23);
@@ -133,7 +133,7 @@
             btnFiltrar.TabIndex = 24;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = true;
-            btnFiltrar.Click += this.btnFiltrar_Click;
+            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnCancelar
             // 

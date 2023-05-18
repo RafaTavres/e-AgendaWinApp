@@ -18,9 +18,9 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             return base.Busca(id);
         }
-        public List<Compromisso> RetornarCompromissosParaOFuturo()
+        public List<Compromisso> RetornarCompromissosParaOFuturo(DateTime dataIncial, DateTime dataFinal)
         {
-            return listaEntidades.FindAll(c => c.data >= DateTime.UtcNow);
+            return listaEntidades.FindAll(c => c.data >= dataIncial && c.data <= dataFinal);
         }
         public List<Compromisso> RetornarCompromissosParaOPassado()
         {

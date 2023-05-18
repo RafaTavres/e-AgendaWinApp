@@ -162,12 +162,11 @@
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnFiltrar.Image = Properties.Resources.filtro;
             btnFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
-            btnFiltrar.Size = new Size(42, 42);
+            btnFiltrar.Size = new Size(23, 42);
             btnFiltrar.Text = "Filtro";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
@@ -218,7 +217,8 @@
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip2);
             Name = "TelaPrincipalForm";
-            Text = "e-Agenda";
+            ShowIcon = false;
+            Text = "e-Agenda 1.0";
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             toolStrip1.ResumeLayout(false);

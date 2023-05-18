@@ -42,8 +42,9 @@ namespace e_Agenda.WinApp
         {
             lblTipoCadastro.Text = controladorBase.ObterTipoCadastro();
 
-            ConfigurarToolTips(controlador);
-            ConfigurarListagem(controlador);
+            ConfigurarToolTips(controladorBase);
+            ConfigurarListagem(controladorBase);
+            ConfigurarAcoesDosBotoes(controladorBase);
         }
 
         private void ConfigurarListagem(ControladorBase controladorBase)
@@ -64,6 +65,15 @@ namespace e_Agenda.WinApp
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
+
+        }
+        private void ConfigurarAcoesDosBotoes(ControladorBase controlador)
+        {
+
+            btnInserir.Enabled = controlador.BotaoInserirAtivado;
+            btnEditar.Enabled = controlador.BotaoEditarAtivado;
+            btnDeletar.Enabled = controlador.BotaoDeletarAtivado;
+            btnFiltrar.Enabled = controlador.BotaoFiltrarAtivado;
 
         }
 
@@ -93,7 +103,7 @@ namespace e_Agenda.WinApp
         {
             if (VerificaControladorVazio(controlador)) ;
             else
-                listagem = controlador.Filtrar();
+                controlador.Filtrar();
         }
         private bool VerificaControladorVazio(ControladorBase controlador)
         {

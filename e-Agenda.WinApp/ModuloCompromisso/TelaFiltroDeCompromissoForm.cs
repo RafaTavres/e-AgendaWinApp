@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Agenda.WinApp.ModuloCompromisso.Dominio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,28 +14,36 @@ namespace e_Agenda.WinApp.ModuloCompromisso
     public partial class TelaFiltroDeCompromissoForm : Form
     {
         public List<Compromisso> listaFiltrada;
-        public RepositorioCompromisso repositorioCompromisso;
-        public TelaFiltroDeCompromissoForm(RepositorioCompromisso repositorioCompromisso)
+        public TelaFiltroDeCompromissoForm()
         {
             InitializeComponent();
-            this.repositorioCompromisso = repositorioCompromisso;
+        }
+        public DateTime DataDeInicio
+        {
+            get { return datePickerDataInicio.Value; }
+        }
+        public DateTime DataDetermino
+        {
+            get { return datePickerDataFinal.Value; }
         }
 
-        public void btnFiltrar_Click(object sender, EventArgs e)
+        public StatusCompromissoEnum StatusSelecionado
         {
-            listaFiltrada = new List<Compromisso>();
-            if (rdBtnVisualizarTodos.Checked)
+            get
             {
-                listaFiltrada = repositorioCompromisso.RetornarTodos();
-            }
-            else if (rdBtnVisualizarFuturos.Checked)
-            {
-                listaFiltrada = repositorioCompromisso.RetornarCompromissosParaOFuturo();
-            }
-            else if (rdBtnVisualizarPassados.Checked)
-            {
-                listaFiltrada = repositorioCompromisso.RetornarCompromissosParaOPassado();
+                if (rdBtnVisualizarFuturos.Checked)
+                    return StatusCompromissoEnum.Futuros;
+
+                else if (rdBtnVisualizarPassados.Checked)
+                    return StatusCompromissoEnum.Passados;
+
+                else
+                    return StatusCompromissoEnum.Todos;
             }
         }
+
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        { }
     }
 }

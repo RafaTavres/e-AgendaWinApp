@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class TelaCompromissoForm : Form
+    public partial class TelaCompromissoForm : Form, IFiltro
     {
         private Compromisso compromisso;
         public TelaCompromissoForm()
@@ -44,6 +45,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }
 
         }
+
+        public UserControl Filtrar()
+        {
+            throw new NotImplementedException();
+        }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string assunto = txtAssunto.Text;

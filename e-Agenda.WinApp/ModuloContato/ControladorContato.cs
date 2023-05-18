@@ -25,6 +25,14 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override string ToolTipFiltrar { get { return "Filtrar Contatos"; } }
 
+        public override bool BotaoInserirAtivado { get { return true; } }
+
+        public override bool BotaoDeletarAtivado { get { return true; } }
+
+        public override bool BotaoEditarAtivado { get { return true; } }
+
+        public override bool BotaoFiltrarAtivado { get { return false; } }
+
         public override void Editar()
         {
             Contato contato = listagemContato.ObterContatoSelecionado();
@@ -114,7 +122,7 @@ namespace e_Agenda.WinApp.ModuloContato
             return "Cadastro de Contatos";
         }
 
-        public override UserControl Filtrar()
+        public override void Filtrar()
         {
             throw new NotImplementedException();
         }

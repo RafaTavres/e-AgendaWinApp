@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class ControladorBase
+    public abstract class ControladorBase 
     {
             public abstract string ToolTipInserir { get; }
 
@@ -16,12 +16,17 @@ namespace e_Agenda.WinApp.Compartilhado
             public abstract string ToolTipExcluir { get; }
             public abstract string ToolTipFiltrar{ get; }
 
+            public abstract bool BotaoInserirAtivado { get; }
+            public abstract bool BotaoDeletarAtivado { get; }
+            public abstract bool BotaoEditarAtivado { get; }
+            public abstract bool BotaoFiltrarAtivado { get; }
+
             public abstract void Inserir();
 
             public abstract void Editar();
 
             public abstract void Excluir();
-            public abstract UserControl Filtrar();
+            public abstract void Filtrar();
 
             public abstract UserControl ObterListagem();
 
