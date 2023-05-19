@@ -66,7 +66,8 @@ namespace e_Agenda.WinApp
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
-
+            btnAdicionatNaLista.ToolTipText= controlador.ToolTipAdicionarItens;
+            btnEditarItensDaTarefa.ToolTipText = controlador.ToolTipEditarItens;
         }
         private void ConfigurarAcoesDosBotoes(ControladorBase controlador)
         {
@@ -75,7 +76,8 @@ namespace e_Agenda.WinApp
             btnEditar.Enabled = controlador.BotaoEditarAtivado;
             btnDeletar.Enabled = controlador.BotaoDeletarAtivado;
             btnFiltrar.Enabled = controlador.BotaoFiltrarAtivado;
-
+            btnAdicionatNaLista.Enabled = controlador.BotaoAdicionarItensAtivado;
+            btnEditarItensDaTarefa.Enabled = controlador.BotaoEditarItensAtivado;
         }
 
 
@@ -97,7 +99,7 @@ namespace e_Agenda.WinApp
         {
             if (VerificaControladorVazio(controlador)) ;
             else
-                controlador.Excluir();
+                controlador.Deletar();
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
@@ -105,6 +107,19 @@ namespace e_Agenda.WinApp
             if (VerificaControladorVazio(controlador)) ;
             else
                 controlador.Filtrar();
+        }
+        private void btnAdicionatNaLista_Click(object sender, EventArgs e)
+        {
+            if (VerificaControladorVazio(controlador)) ;
+            else
+                controlador.AdicionarItemsNaListaDeTarefa();
+        }
+
+        private void btnEditarItensDaTarefa_Click(object sender, EventArgs e)
+        {
+            if (VerificaControladorVazio(controlador)) ;
+            else
+                controlador.EditarItensDaTarefa();
         }
         private bool VerificaControladorVazio(ControladorBase controlador)
         {
@@ -116,5 +131,6 @@ namespace e_Agenda.WinApp
             return false;
         }
 
+        
     }
 }

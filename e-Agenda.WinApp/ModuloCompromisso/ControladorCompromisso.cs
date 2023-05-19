@@ -37,6 +37,14 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override bool BotaoFiltrarAtivado { get { return true; } }
 
+        public override string ToolTipAdicionarItens { get { return "Indisponível"; } }
+
+        public override string ToolTipEditarItens { get { return "Indisponível"; } }
+
+        public override bool BotaoAdicionarItensAtivado { get { return false; } }
+
+        public override bool BotaoEditarItensAtivado { get { return false; } }
+
         public override void Editar()
         {
             Compromisso compromisso = listagemCompromisso.ObterCompromissoSelecionado();
@@ -88,7 +96,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             listagemCompromisso.AtualizarRegistros(compromissos);
         }
 
-        public override void Excluir()
+        public override void Deletar()
         {
             Compromisso compromisso = listagemCompromisso.ObterCompromissoSelecionado();
 
@@ -157,6 +165,16 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
                 CarregarCompromissosComFiltro(statusCompromisso, dataInicial, dataFinal);
             }           
+        }
+
+        public override void AdicionarItemsNaListaDeTarefa()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void EditarItensDaTarefa()
+        {
+            throw new NotImplementedException();
         }
     }
 }

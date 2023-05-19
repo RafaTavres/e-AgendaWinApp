@@ -23,8 +23,11 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
 
-        public override string ToolTipFiltrar { get { return "Filtrar Contatos"; } }
+        public override string ToolTipFiltrar { get { return "Indiponivel"; } }
 
+        public override string ToolTipAdicionarItens { get { return "Indiponivel"; } }
+
+        public override string ToolTipEditarItens { get { return "Indiponivel"; } }
         public override bool BotaoInserirAtivado { get { return true; } }
 
         public override bool BotaoDeletarAtivado { get { return true; } }
@@ -32,6 +35,14 @@ namespace e_Agenda.WinApp.ModuloContato
         public override bool BotaoEditarAtivado { get { return true; } }
 
         public override bool BotaoFiltrarAtivado { get { return false; } }
+
+  
+
+        public override bool BotaoAdicionarItensAtivado { get { return false; } }
+
+
+        public override bool BotaoEditarItensAtivado { get { return false; } }
+
 
         public override void Editar()
         {
@@ -60,7 +71,7 @@ namespace e_Agenda.WinApp.ModuloContato
             }
         }
 
-        public override void Excluir()
+        public override void Deletar()
         {
             Contato contato = listagemContato.ObterContatoSelecionado();
 
@@ -123,6 +134,16 @@ namespace e_Agenda.WinApp.ModuloContato
         }
 
         public override void Filtrar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AdicionarItemsNaListaDeTarefa()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void EditarItensDaTarefa()
         {
             throw new NotImplementedException();
         }

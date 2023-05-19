@@ -33,6 +33,14 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override bool BotaoFiltrarAtivado { get { return true; } }
 
+        public override string ToolTipAdicionarItens { get { return "Adicionar Items a Tarefa"; } }
+
+        public override string ToolTipEditarItens { get { return "Editar Items  de uma Tarefa existente"; } }
+
+        public override bool BotaoAdicionarItensAtivado { get { return true; } }
+
+        public override bool BotaoEditarItensAtivado { get { return true; } }
+
         public override void Editar()
         {
             Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
@@ -59,7 +67,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
         }
 
-        public override void Excluir()
+        public override void Deletar()
         {
             Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
 
@@ -123,6 +131,17 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Tarefas";
+        }
+
+        public override void AdicionarItemsNaListaDeTarefa()
+        {
+            TelaAdicionarItemsNaTarefaForm tl = new();
+            tl.ShowDialog();
+        }
+
+        public override void EditarItensDaTarefa()
+        {
+            throw new NotImplementedException();
         }
     }
 }
