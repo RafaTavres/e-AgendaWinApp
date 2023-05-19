@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Agenda.WinApp.Compartilhado
+namespace e_Agenda.WinApp.ModuloTarefa.Dominio
 {
-    internal interface IFiltro
+    public enum PrioridadeTarefaEnum
     {
-        public abstract UserControl Filtrar();
+        Alta,Media,Baixa
     }
 }

@@ -102,7 +102,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 return;
             }
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o contato {compromisso.assunto}?", "Exclusão de Compromissos",
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o Compromisso {compromisso.assunto}?", "Exclusão de Compromissos",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)

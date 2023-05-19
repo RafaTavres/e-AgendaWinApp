@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Agenda.WinApp.ModuloCompromisso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,24 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class ListagemTarefaControl : UserControl
     {
-        List<Tarefa> tarefas = new List<Tarefa>();
 
         public ListagemTarefaControl()
         {
             InitializeComponent();
+        }
+        public void AtualizarRegistros(List<Tarefa> tarefas)
+        {
+            listTarefas.Items.Clear();
 
-            tarefas.Add(new Tarefa(1, "Lavar o carro", "alta"));
-            tarefas.Add(new Tarefa(2, "Lavar o cachorro", "alta"));
-
-            foreach (Tarefa tarefa in tarefas)
+            foreach (Tarefa item in tarefas)
             {
-                listTarefas.Items.Add(tarefa);
+                listTarefas.Items.Add(item);
             }
+        }
+
+        public Tarefa ObterTarefaSelecionada()
+        {
+            return (Tarefa)listTarefas.SelectedItem;
         }
     }
 }

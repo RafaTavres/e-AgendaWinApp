@@ -1,27 +1,54 @@
-﻿using System;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    internal class Tarefa
+    public class Tarefa : EntidadeBase<Tarefa>
     {
-        public int id;
         public string titulo;
-        public string prioridade;
+        public string descricao;
+        public DateTime dataCriacao;
+        public DateTime dataConclusao;
+        public double percentualConcluido;
+        public PrioridadeTarefaEnum prioridade;
+        public bool estahConcluida;
 
-        public Tarefa(int id, string titulo, string prioridade)
+        public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida)
         {
-            this.id = id;
             this.titulo = titulo;
+            this.descricao = descricao;
+            this.dataCriacao = dataCriacao;
+            this.percentualConcluido = percentualConcluido;
             this.prioridade = prioridade;
+            this.estahConcluida = estahConcluida;
+        }
+
+        public override void Atualizar(Tarefa tarefaAtualizada)
+        {
+            titulo = tarefaAtualizada.titulo;
+            descricao = tarefaAtualizada.descricao;
+            prioridade = tarefaAtualizada.prioridade;
+            dataCriacao = tarefaAtualizada.dataCriacao;
+            dataConclusao = tarefaAtualizada.dataConclusao;
+            percentualConcluido = tarefaAtualizada.percentualConcluido;
+            estahConcluida = tarefaAtualizada.estahConcluida;
         }
 
         public override string ToString()
         {
-            return "Id: " + id + ", " + titulo + ", Prioridade: " + prioridade;
+            if (estahConcluida == false)
+            {
+                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao}, Data de Conclusão: {dataConclusao}";
+            }
+            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao}";
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class TelaCompromissoForm : Form, IFiltro
+    public partial class TelaCompromissoForm : Form
     {
         private Compromisso compromisso;
         public TelaCompromissoForm()
@@ -44,11 +44,6 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 cmbBoxListaDeContatos.Items.Add(item);
             }
 
-        }
-
-        public UserControl Filtrar()
-        {
-            throw new NotImplementedException();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
