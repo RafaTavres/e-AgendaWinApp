@@ -35,7 +35,7 @@ namespace e_Agenda.WinApp.ModuloContato
                 return contato;
             }
         }
-     
+
 
         private void btnGravar_Click_1(object sender, EventArgs e)
         {

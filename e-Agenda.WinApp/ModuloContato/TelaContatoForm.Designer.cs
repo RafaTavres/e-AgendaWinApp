@@ -36,12 +36,12 @@
             label4 = new Label();
             label5 = new Label();
             txtNome = new TextBox();
-            txtTelefone = new TextBox();
             txtCargo = new TextBox();
-            txtEmail = new TextBox();
             txtEmpresa = new TextBox();
             btnGravar = new Button();
             btnCancelar = new Button();
+            txtTelefone = new MaskedTextBox();
+            txtEmail = new MaskedTextBox();
             SuspendLayout();
             // 
             // label1
@@ -114,26 +114,12 @@
             txtNome.Size = new Size(395, 23);
             txtNome.TabIndex = 17;
             // 
-            // txtTelefone
-            // 
-            txtTelefone.Location = new Point(91, 74);
-            txtTelefone.Name = "txtTelefone";
-            txtTelefone.Size = new Size(149, 23);
-            txtTelefone.TabIndex = 18;
-            // 
             // txtCargo
             // 
             txtCargo.Location = new Point(91, 103);
             txtCargo.Name = "txtCargo";
             txtCargo.Size = new Size(149, 23);
             txtCargo.TabIndex = 19;
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(313, 74);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(149, 23);
-            txtEmail.TabIndex = 20;
             // 
             // txtEmpresa
             // 
@@ -165,17 +151,33 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // txtTelefone
+            // 
+            txtTelefone.Location = new Point(91, 71);
+            txtTelefone.Mask = "(999) 0000-0000";
+            txtTelefone.Name = "txtTelefone";
+            txtTelefone.Size = new Size(149, 23);
+            txtTelefone.TabIndex = 24;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(313, 71);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(149, 23);
+            txtEmail.TabIndex = 25;
+            txtEmail.ValidatingType = typeof(DateTime);
+            // 
             // TelaContatoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(505, 233);
+            Controls.Add(txtEmail);
+            Controls.Add(txtTelefone);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(txtEmpresa);
-            Controls.Add(txtEmail);
             Controls.Add(txtCargo);
-            Controls.Add(txtTelefone);
             Controls.Add(txtNome);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -201,11 +203,11 @@
         private Label label4;
         private Label label5;
         private TextBox txtNome;
-        private TextBox txtTelefone;
         private TextBox txtCargo;
-        private TextBox txtEmail;
         private TextBox txtEmpresa;
         private Button btnGravar;
         private Button btnCancelar;
+        private MaskedTextBox txtTelefone;
+        private MaskedTextBox txtEmail;
     }
 }
