@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             menuStrip2 = new MenuStrip();
             cadastrosToolStripMenuItem = new ToolStripMenuItem();
             contatoToolStripMenuItem = new ToolStripMenuItem();
@@ -162,11 +163,12 @@
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFiltrar.Image = (Image)resources.GetObject("btnFiltrar.Image");
             btnFiltrar.ImageScaling = ToolStripItemImageScaling.None;
             btnFiltrar.ImageTransparentColor = Color.Magenta;
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
-            btnFiltrar.Size = new Size(23, 42);
+            btnFiltrar.Size = new Size(42, 42);
             btnFiltrar.Text = "Filtro";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
