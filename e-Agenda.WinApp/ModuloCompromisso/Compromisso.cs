@@ -17,7 +17,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public DateTime data;
         public DateTime horaDeInicio;
         public DateTime horaDoTermino;
-        public Contato contatorelacionado;
+        public Contato contatoRelacionado;
         public bool ehRemoto;
 
         public Compromisso(string assunto, string local, DateTime data, DateTime horaDeInicio, DateTime horaDoTermino, bool ehRemoto,Contato contato)
@@ -28,7 +28,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             this.horaDeInicio = horaDeInicio;
             this.horaDoTermino = horaDoTermino;
             this.ehRemoto = ehRemoto;
-            this.contatorelacionado = contato;
+            contatoRelacionado = contato;
         }
 
         public override void Atualizar(Compromisso compromisso)
@@ -38,10 +38,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             data = compromisso.data;
             horaDeInicio = compromisso.horaDeInicio;
             horaDoTermino = compromisso.horaDoTermino;
-            contatorelacionado = compromisso.contatorelacionado;
-            ehRemoto = compromisso.ehRemoto;
-            contatorelacionado = compromisso.contatorelacionado;
-            
+            contatoRelacionado = compromisso.contatoRelacionado;
+            ehRemoto = compromisso.ehRemoto;           
         }
 
 
@@ -49,8 +47,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
        public override string ToString()
         {
             return $"Id: {id} " +
-                $"| Telefone do Contato: {contatorelacionado.telefone} " +
-                $"| Nome do Contato: {contatorelacionado.nome}" +
+                $"| Telefone do Contato: {contatoRelacionado.telefone} " +
+                $"| Nome do Contato: {contatoRelacionado.nome}" +
                 $"| Assunto {assunto} " +
                 $"| Local: {local} " +
                 $"| É Remoto?: {ehRemoto} " +

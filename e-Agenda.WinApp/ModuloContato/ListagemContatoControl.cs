@@ -32,5 +32,6 @@ namespace e_Agenda.WinApp.ModuloContato
         {
             return (Contato)listContato.SelectedItem;
         }
+
     }
 }

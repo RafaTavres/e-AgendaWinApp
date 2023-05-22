@@ -17,31 +17,31 @@ namespace e_Agenda.WinApp.ModuloContato
             this.repositorioContato = (RepositorioContato)repositorio;
         }
 
-        public override string ToolTipInserir { get { return "Inserir novo Contato"; } }
+        public override string ToolTipInserir  => "Inserir novo Contato"; 
 
-        public override string ToolTipEditar { get { return "Editar Contato existente"; } }
+        public override string ToolTipEditar  => "Editar Contato existente"; 
 
-        public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
+        public override string ToolTipExcluir  => "Excluir Contato existente"; 
 
-        public override string ToolTipFiltrar { get { return "Indiponivel"; } }
+        public override string ToolTipFiltrar  => "Indiponivel"; 
 
-        public override string ToolTipAdicionarItens { get { return "Indiponivel"; } }
+        public override string ToolTipAdicionarItens  => "Indiponivel"; 
 
-        public override string ToolTipEditarItens { get { return "Indiponivel"; } }
-        public override bool BotaoInserirAtivado { get { return true; } }
+        public override string ToolTipEditarItens  => "Indiponivel"; 
+        public override bool BotaoInserirAtivado  => true; 
 
-        public override bool BotaoDeletarAtivado { get { return true; } }
+        public override bool BotaoDeletarAtivado  => true; 
 
-        public override bool BotaoEditarAtivado { get { return true; } }
+        public override bool BotaoEditarAtivado  => true; 
 
-        public override bool BotaoFiltrarAtivado { get { return false; } }
+        public override bool BotaoFiltrarAtivado  => false; 
 
   
 
-        public override bool BotaoAdicionarItensAtivado { get { return false; } }
+        public override bool BotaoAdicionarItensAtivado  => false; 
 
 
-        public override bool BotaoEditarItensAtivado { get { return false; } }
+        public override bool BotaoEditarItensAtivado  => false; 
 
 
         public override void Editar()

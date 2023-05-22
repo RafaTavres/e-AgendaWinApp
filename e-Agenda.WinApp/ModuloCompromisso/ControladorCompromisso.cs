@@ -17,33 +17,33 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public ControladorCompromisso(RepositorioBase<Compromisso> repositorio,RepositorioContato repositorioContato)
         {
-            this.repositorioCompromisso = (RepositorioCompromisso)repositorio;
+            repositorioCompromisso = (RepositorioCompromisso)repositorio;
             this.repositorioContato = repositorioContato;
         }
 
-        public override string ToolTipInserir { get { return "Inserir novo Compromisso"; } }
+        public override string ToolTipInserir => "Inserir novo Compromisso";
 
-        public override string ToolTipEditar { get { return "Editar Compromisso existente"; } }
+        public override string ToolTipEditar => "Editar Compromisso existente"; 
 
-        public override string ToolTipExcluir { get { return "Excluir Compromisso existente"; } }
+        public override string ToolTipExcluir => "Excluir Compromisso existente"; 
 
-        public override string ToolTipFiltrar { get { return "Filtrar Compromissos"; } }
+        public override string ToolTipFiltrar => "Filtrar Compromissos"; 
 
-        public override bool BotaoInserirAtivado { get { return true; } }
+        public override bool BotaoInserirAtivado => true; 
 
-        public override bool BotaoDeletarAtivado { get { return true; } }
+        public override bool BotaoDeletarAtivado => true; 
 
-        public override bool BotaoEditarAtivado { get { return true; } }
+        public override bool BotaoEditarAtivado => true; 
 
-        public override bool BotaoFiltrarAtivado { get { return true; } }
+        public override bool BotaoFiltrarAtivado => true; 
 
-        public override string ToolTipAdicionarItens { get { return "Indisponível"; } }
+        public override string ToolTipAdicionarItens => "Indisponível"; 
 
-        public override string ToolTipEditarItens { get { return "Indisponível"; } }
+        public override string ToolTipEditarItens => "Indisponível"; 
 
-        public override bool BotaoAdicionarItensAtivado { get { return false; } }
+        public override bool BotaoAdicionarItensAtivado => false; 
 
-        public override bool BotaoEditarItensAtivado { get { return false; } }
+        public override bool BotaoEditarItensAtivado => false; 
 
         public override void Editar()
         {

@@ -20,6 +20,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public double percentualConcluido;
         public PrioridadeTarefaEnum prioridade;
         public bool estahConcluida;
+        public List<Item> itens;
 
         public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida)
         {
@@ -29,6 +30,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             this.percentualConcluido = percentualConcluido;
             this.prioridade = prioridade;
             this.estahConcluida = estahConcluida;
+            itens = new();
         }
 
         public override void Atualizar(Tarefa tarefaAtualizada)
@@ -44,11 +46,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override string ToString()
         {
-            if (estahConcluida == false)
+            if (estahConcluida == true)
             {
-                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao}, Data de Conclusão: {dataConclusao}";
+                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
             }
-            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao}";
+            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Concluída: Não";
         }
     }
 }

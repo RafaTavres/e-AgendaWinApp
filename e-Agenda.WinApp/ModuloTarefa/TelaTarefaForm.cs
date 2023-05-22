@@ -49,7 +49,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             PrioridadeTarefaEnum prioridadeTarefa = PrioridadeTarefaEnum.Baixa;
 
-            bool estahConcluida = true;
+            bool estahConcluida = false;
 
             if (rdBtnPrioridadeAlta.Checked)
             {

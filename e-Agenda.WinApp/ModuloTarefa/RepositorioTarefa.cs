@@ -17,7 +17,47 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override Tarefa Busca(int id)
         {
             return base.Busca(id);
-        }       
+        }
+        public void CheckaItemsCompletos(List<Item> itemsCheckados, List<Item> itemsAtuais)
+        {
+            foreach (var itemCheckado in itemsCheckados)
+            {
+                foreach (var itemAtual  in itemsAtuais)
+                {
+                    if(itemAtual == itemCheckado)
+                    {
+                        itemAtual.estahConcluida = true;
+                        itemAtual.dataConclusao = DateTime.Now.Date;
+                    }
+                    else
+                    {
+                        itemAtual.estahConcluida = false;
+                        itemAtual.dataConclusao = DateTime.MinValue;
+                    }
+                }
+            }           
+        }
+
+        public double CalculaPorcentagemConcluida(List<Item> itemsCheckados,List<Item> itemsAtuais)
+        {
+            double f = itemsAtuais.Count() / itemsCheckados.Count();
+            double porcentagem = 100 / f;                          
+            return porcentagem;
+        }
+
+        public void FinalizaTarefa(Tarefa tarefa)
+        {
+            if (tarefa.percentualConcluido == 100)
+            {
+                tarefa.estahConcluida = true;
+                tarefa.dataConclusao = DateTime.UtcNow.Date;
+            }
+            else
+            {
+                tarefa.estahConcluida = false;
+                tarefa.dataConclusao = DateTime.MinValue;
+            }
+        }
 
         public override bool VerificaObjetosComErro(Tarefa t)
         {

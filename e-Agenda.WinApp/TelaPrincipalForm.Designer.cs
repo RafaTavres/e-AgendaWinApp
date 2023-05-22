@@ -252,7 +252,7 @@
             Controls.Add(menuStrip2);
             Name = "TelaPrincipalForm";
             ShowIcon = false;
-            Text = "e-Agenda 1.0";
+            Text = "e-Agenda 2.0";
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();
             toolStrip1.ResumeLayout(false);

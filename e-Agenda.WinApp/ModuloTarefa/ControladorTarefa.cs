@@ -17,29 +17,29 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             this.repositorioTarefas = (RepositorioTarefa?)repositorio;
         }
-        public override string ToolTipInserir { get { return "Inserir nova Tarefa"; } }
+        public override string ToolTipInserir  =>  "Inserir nova Tarefa";  
 
-        public override string ToolTipEditar { get { return "Editar Tarefa existente"; } }
+        public override string ToolTipEditar  =>  "Editar Tarefa existente";  
 
-        public override string ToolTipExcluir { get { return "Excluir Tarefa existente"; } }
+        public override string ToolTipExcluir  =>  "Excluir Tarefa existente";  
 
-        public override string ToolTipFiltrar { get {return "Não habiltato"; } }
+        public override string ToolTipFiltrar => "Não habiltato";  
     
-        public override bool BotaoInserirAtivado { get { return true; } } 
+        public override bool BotaoInserirAtivado  =>  true;   
 
-        public override bool BotaoDeletarAtivado { get { return true; } }
+        public override bool BotaoDeletarAtivado  =>  true;  
 
-        public override bool BotaoEditarAtivado { get { return true; } }
+        public override bool BotaoEditarAtivado  =>  true;  
 
-        public override bool BotaoFiltrarAtivado { get { return true; } }
+        public override bool BotaoFiltrarAtivado  =>  true;  
 
-        public override string ToolTipAdicionarItens { get { return "Adicionar Items a Tarefa"; } }
+        public override string ToolTipAdicionarItens  =>  "Adicionar Items a Tarefa";  
 
-        public override string ToolTipEditarItens { get { return "Editar Items  de uma Tarefa existente"; } }
+        public override string ToolTipEditarItens  =>  "Editar Items  de uma Tarefa existente";  
 
-        public override bool BotaoAdicionarItensAtivado { get { return true; } }
+        public override bool BotaoAdicionarItensAtivado  =>  true;  
 
-        public override bool BotaoEditarItensAtivado { get { return true; } }
+        public override bool BotaoEditarItensAtivado  =>  true;  
 
         public override void Editar()
         {
@@ -135,13 +135,46 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override void AdicionarItemsNaListaDeTarefa()
         {
-            TelaAdicionarItemsNaTarefaForm tl = new();
-            tl.ShowDialog();
+            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+
+            TelaAdicionarItemsNaTarefaForm telaItem = new();
+            telaItem.ShowDialog();
+
+            if(telaItem.DialogResult == DialogResult.OK)
+            {
+                Item item = telaItem.Item;
+                tarefa.itens.Add(item);
+                CarregarTarefas();
+            }
         }
 
         public override void EditarItensDaTarefa()
         {
-            throw new NotImplementedException();
+            TelaEditarItemsDaTarefaForm telaEditarItems = new();
+
+            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+
+            telaEditarItems.AlterarPercentualConcluido(tarefa.percentualConcluido);
+
+            //telaEditarItems.AlterarCorDeFundoDasTarefasConcluidas();
+
+            telaEditarItems.AlterarListaDeItems(tarefa.itens);
+
+            telaEditarItems.ShowDialog();
+
+            if (telaEditarItems.DialogResult == DialogResult.OK)
+            {
+                List<Item> itensCheckados = telaEditarItems.RetornarItemsChecados();                
+
+                repositorioTarefas.CheckaItemsCompletos(itensCheckados, tarefa.itens);
+
+                tarefa.percentualConcluido = repositorioTarefas.CalculaPorcentagemConcluida(itensCheckados,tarefa.itens);
+
+                repositorioTarefas.FinalizaTarefa(tarefa);
+
+                CarregarTarefas();
+            }           
+
         }
     }
 }

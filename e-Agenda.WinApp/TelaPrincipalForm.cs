@@ -66,7 +66,7 @@ namespace e_Agenda.WinApp
             btnEditar.ToolTipText = controlador.ToolTipEditar;
             btnDeletar.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
-            btnAdicionatNaLista.ToolTipText= controlador.ToolTipAdicionarItens;
+            btnAdicionatNaLista.ToolTipText = controlador.ToolTipAdicionarItens;
             btnEditarItensDaTarefa.ToolTipText = controlador.ToolTipEditarItens;
         }
         private void ConfigurarAcoesDosBotoes(ControladorBase controlador)
@@ -131,6 +131,6 @@ namespace e_Agenda.WinApp
             return false;
         }
 
-        
+
     }
 }
