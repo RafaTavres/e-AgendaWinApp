@@ -155,13 +155,13 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override void Filtrar()
         {
-            TelaFiltroDeCompromissoForm tl = new();
+            TelaFiltroDeCompromissoForm telaFiltro = new();
 
-            if (tl.ShowDialog() == DialogResult.OK)
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                StatusCompromissoEnum statusCompromisso = tl.StatusSelecionado;
-                DateTime dataFinal = tl.DataDetermino.Date;
-                DateTime dataInicial = tl.DataDeInicio.Date;
+                StatusCompromissoEnum statusCompromisso = telaFiltro.StatusSelecionado;
+                DateTime dataFinal = telaFiltro.DataDetermino.Date;
+                DateTime dataInicial = telaFiltro.DataDeInicio.Date;
 
                 CarregarCompromissosComFiltro(statusCompromisso, dataInicial, dataFinal);
             }           

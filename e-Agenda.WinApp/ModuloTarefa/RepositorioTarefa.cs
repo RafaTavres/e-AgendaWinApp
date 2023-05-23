@@ -1,5 +1,6 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
+using e_Agenda.WinApp.ModuloTarefa.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,26 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             return base.Busca(id);
         }
+
+
+        public List<Tarefa> RetornarTarefasComPrioridadeAlta()
+        {
+            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Alta);
+        }
+
+        public List<Tarefa> RetornarTarefasComPrioridadeMedia()
+        {
+            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Media);
+        }
+
+        public List<Tarefa> RetornarTarefasComPrioridadeBaixa()
+        {
+            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Baixa);
+        }
+
+
+
+
         public void CheckaItemsCompletos(List<Item> itemsCheckados, List<Item> itemsAtuais)
         {
             foreach (var itemCheckado in itemsCheckados)

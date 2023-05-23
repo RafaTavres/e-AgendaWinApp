@@ -1,6 +1,9 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
+using e_Agenda.WinApp.ModuloCompromisso.Dominio;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa.Dominio;
+using e_Agenda.WinApp.ModuloTarefa.Tela_Filtro_Tarefa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,16 +94,55 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 CarregarTarefas();
             }
         }
+
+
+
         private void CarregarTarefas()
         {
             List<Tarefa> tarefas = repositorioTarefas.RetornarTodos();
             listagemTarefa.AtualizarRegistros(tarefas);
         }
 
+
+
         public override void Filtrar()
         {
-            throw new NotImplementedException();
+            TelaFiltroTarefasForm telaFIltro = new();
+
+            if (telaFIltro.ShowDialog() == DialogResult.OK)
+            {
+                PrioridadeTarefaEnum prioridadeTarefa = telaFIltro.PrioridadeTarefa;
+                CarregarCompromissosComFiltro(prioridadeTarefa);
+            }
         }
+
+
+
+        private void CarregarCompromissosComFiltro(PrioridadeTarefaEnum prioridadeTarefa)
+        {
+            List<Tarefa> tarefas;
+            switch (prioridadeTarefa)
+            {
+                case PrioridadeTarefaEnum.Alta :
+                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeAlta();
+                    break;
+                case PrioridadeTarefaEnum.Media:
+                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeMedia();
+                    break;
+                case PrioridadeTarefaEnum.Baixa:
+                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeBaixa();
+                    break;
+                default:
+                    tarefas = repositorioTarefas.RetornarTodos();
+                    break;
+            }
+
+            listagemTarefa.AtualizarRegistros(tarefas);
+        }
+
+
+
+
 
         public override void Inserir()
         {

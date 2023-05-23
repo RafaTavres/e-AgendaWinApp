@@ -46,15 +46,16 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
        public override string ToString()
         {
-            return $"Id: {id} " +
-                $"| Telefone do Contato: {contatoRelacionado.telefone} " +
-                $"| Nome do Contato: {contatoRelacionado.nome}" +
-                $"| Assunto {assunto} " +
-                $"| Local: {local} " +
-                $"| É Remoto?: {ehRemoto} " +
-                $"| Data: {data.ToString("dd/MMM/yyyy")} " +
-                $"| Hora De Inicio: {horaDeInicio.ToString("HH:mm")} " +                                
-                $"| Hora De Término: {horaDoTermino.ToString("HH:mm")} ";
+            return 
+                $"Id: {id} " +
+                $" | Telefone do Contato: {contatoRelacionado.telefone} " +
+                $" | Nome do Contato: {contatoRelacionado.nome}" +
+                $" | Assunto {assunto} " +
+                $" | Local: {local} " +
+                $" | É Remoto?: {ehRemoto} " +
+                $" | Data: {data.ToString("dd/MMM/yyyy")} " +
+                $" | Hora De Inicio: {horaDeInicio.ToString("HH:mm")} " +                                
+                $" | Hora De Término: {horaDoTermino.ToString("HH:mm")} ";
         }
 
         public override string[] Validar()

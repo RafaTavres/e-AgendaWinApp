@@ -40,7 +40,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
             titulo = tarefaAtualizada.titulo;
             descricao = tarefaAtualizada.descricao;
             prioridade = tarefaAtualizada.prioridade;
-            dataCriacao = tarefaAtualizada.dataCriacao;
             dataConclusao = tarefaAtualizada.dataConclusao;
             percentualConcluido = tarefaAtualizada.percentualConcluido;
             estahConcluida = tarefaAtualizada.estahConcluida;
@@ -51,9 +50,22 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             if (estahConcluida == true)
             {
-                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
+                return $"Id: {id}" +
+                    $" | Título: {titulo}" +
+                    $" | Prioridade: {prioridade}" +
+                    $" | Descrição: {descricao}" +
+                    $" | Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}" +
+                    $" | Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}" +
+                    $" | Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}" +
+                    $" | Concluída: Sim";
             }
-            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}, Concluída: Não";
+            return $"Id: {id}" +
+                $" | Título: {titulo}" +
+                $" | Prioridade: {prioridade}" +
+                $" | Descrição: {descricao}" +
+                $" | Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}" +
+                $" | Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}" +
+                $" | Concluída: Não";
         }
 
         public override string[] Validar()

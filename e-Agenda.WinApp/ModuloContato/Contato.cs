@@ -35,7 +35,12 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override string ToString()
         {
-            return $"Id: {id}| Nome {nome} | Empresa: {empresa} | Telefone {telefone} | E-mail {email} | Cargo {cargo}";
+            return $"Id: {id}" +
+                $" | Nome {nome} " +
+                $" | Empresa: {empresa} " +
+                $" | Telefone {telefone} " +
+                $" | E-mail {email} " +
+                $" | Cargo {cargo}";
         }
 
         public override bool Equals(object? obj)
