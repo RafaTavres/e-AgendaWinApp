@@ -40,8 +40,16 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public double CalculaPorcentagemConcluida(List<Item> itemsCheckados,List<Item> itemsAtuais)
         {
-            double f = itemsAtuais.Count() / itemsCheckados.Count();
-            double porcentagem = 100 / f;                          
+            double porcentagem = 0;
+            try
+            {
+                double f = itemsAtuais.Count() / itemsCheckados.Count();
+                porcentagem = 100 / f;
+            }
+            catch(DivideByZeroException)
+            {
+                
+            }                         
             return porcentagem;
         }
 

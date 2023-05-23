@@ -15,7 +15,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         private RepositorioTarefa repositorioTarefas;
         public ControladorTarefa(RepositorioBase<Tarefa> repositorio)
         {
-            this.repositorioTarefas = (RepositorioTarefa?)repositorio;
+            repositorioTarefas = (RepositorioTarefa)repositorio;
         }
         public override string ToolTipInserir  =>  "Inserir nova Tarefa";  
 
@@ -136,9 +136,19 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override void AdicionarItemsNaListaDeTarefa()
         {
             Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+            if (tarefa == null)
+            {
+                MessageBox.Show($"Selecione uma Tarefa primeiro!",
+                    "Adição de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
+                return;
+            }
             TelaAdicionarItemsNaTarefaForm telaItem = new();
             telaItem.ShowDialog();
+
+
 
             if(telaItem.DialogResult == DialogResult.OK)
             {
@@ -154,9 +164,17 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
 
-            telaEditarItems.AlterarPercentualConcluido(tarefa.percentualConcluido);
+            if (tarefa == null)
+            {
+                MessageBox.Show($"Selecione uma Tarefa primeiro!",
+                    "Edição de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            //telaEditarItems.AlterarCorDeFundoDasTarefasConcluidas();
+                return;
+            }
+
+            telaEditarItems.AlterarPercentualConcluido(tarefa.percentualConcluido);
 
             telaEditarItems.AlterarListaDeItems(tarefa.itens);
 

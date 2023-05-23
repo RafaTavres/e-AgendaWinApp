@@ -35,9 +35,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             if (estahConcluida == true)
             {              
-                return $"Id: {id}, Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
+                return $"Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
             }
-            return $"Id: {id}, Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Concluída: Não";
+            return $"Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Concluída: Não";
         }
     }
 }
