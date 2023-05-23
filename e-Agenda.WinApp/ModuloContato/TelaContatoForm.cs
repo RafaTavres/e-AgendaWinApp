@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Agenda.WinApp.ModuloCompromisso;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,6 +40,25 @@ namespace e_Agenda.WinApp.ModuloContato
 
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
+            contato = ObterContato();
+
+            string[] erros = contato.Validar();
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+
+            ObterContato();
+
+            if (txtId.Text != "0")
+                contato.id = Convert.ToInt32(txtId.Text);
+        }
+
+        private Contato ObterContato()
+        {
             string nome = txtNome.Text;
 
             string telefone = txtTelefone.Text;
@@ -49,10 +69,7 @@ namespace e_Agenda.WinApp.ModuloContato
 
             string empresa = txtEmpresa.Text;
 
-            contato = new Contato(nome, telefone, email, cargo, empresa);
-
-            if (txtId.Text != "0")
-                contato.id = Convert.ToInt32(txtId.Text);
+            return contato = new Contato(nome, telefone, email, cargo, empresa);
         }
     }
 }

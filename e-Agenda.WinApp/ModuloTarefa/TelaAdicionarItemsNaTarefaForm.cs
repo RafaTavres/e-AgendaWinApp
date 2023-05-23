@@ -1,15 +1,4 @@
-﻿using e_Agenda.WinApp.ModuloTarefa.Dominio;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace e_Agenda.WinApp.ModuloTarefa
+﻿namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaAdicionarItemsNaTarefaForm : Form
     {
@@ -37,18 +26,37 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+
+            item = ObterItem();
+
+            string[] erros = item.Validar();
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+            
+            if (txtId.Text != "0")
+                item.id = Convert.ToInt32(txtId.Text);
+        }
+
+        private Item ObterItem()
+        {
             string titulo = txtTituloDoItem.Text;
 
             string descricao = txtDescricaoDOItem.Text;
 
-            DateTime dataInicio = DateTime.Now;
+            DateTime dataInicio = datePickerDataInicioDoItem.Value.Date;
+
+            DateTime dataConclusao = datePickerDataDeConclusaoItem.Value.Date;
 
             bool estahConcluida = false;
-          
-            item = new Item(titulo, descricao, dataInicio, estahConcluida);
 
-            if (txtId.Text != "0")
-                item.id = Convert.ToInt32(txtId.Text);
+            item = new Item(titulo, descricao, dataInicio, dataConclusao, estahConcluida);
+
+            return item;
         }
     }
 }

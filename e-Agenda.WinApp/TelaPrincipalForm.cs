@@ -13,10 +13,28 @@ namespace e_Agenda.WinApp
         private RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
         private RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
 
+        private static TelaPrincipalForm telaPrincipal;
         public TelaPrincipalForm()
         {
             InitializeComponent();
+            telaPrincipal = this;
         }
+        public static TelaPrincipalForm Instancia
+        {
+            get
+            {
+                if (telaPrincipal == null)
+                    telaPrincipal = new TelaPrincipalForm();
+
+                return telaPrincipal;
+            }
+        }
+
+        public void AtualizarRodape(string mensagem)
+        {
+            lblRodape.Text = mensagem;
+        }
+
 
         private void contatoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -46,6 +64,7 @@ namespace e_Agenda.WinApp
             ConfigurarToolTips(controladorBase);
             ConfigurarListagem(controladorBase);
             ConfigurarAcoesDosBotoes(controladorBase);
+
         }
 
         private void ConfigurarListagem(ControladorBase controladorBase)

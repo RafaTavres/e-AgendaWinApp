@@ -15,13 +15,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public DateTime dataConclusao;
         public bool estahConcluida;
 
-        public Item(string titulo, string descricao, DateTime dataCriacao, bool estahConcluida)
+        public Item(string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, bool estahConcluida)
         {
             this.titulo = titulo;
             this.descricao = descricao;
             this.dataCriacao = dataCriacao;
+            this.dataConclusao = dataConclusao;
             this.estahConcluida = estahConcluida;
         }
+
 
         public override void Atualizar(Item itemAtualizado)
         {
@@ -37,7 +39,23 @@ namespace e_Agenda.WinApp.ModuloTarefa
             {              
                 return $"Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
             }
-            return $"Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Concluída: Não";
+            return $"Título: {titulo}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Não";
         }
+
+        public override string[] Validar()
+        {
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(titulo))
+                erros.Add("O campo 'titulo' é obrigatório");
+
+            if (string.IsNullOrEmpty(descricao))
+                erros.Add("O campo 'descricao' é obrigatório");
+
+            if (dataCriacao > dataConclusao)
+                erros.Add("A data de conclusão não pode ser menor que a data de criação");
+
+            return erros.ToArray();
+         }   
     }
 }

@@ -17,6 +17,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public TelaFiltroDeCompromissoForm()
         {
             InitializeComponent();
+            gpBoxFiltroFuturos.Enabled = false;
         }
         public DateTime DataDeInicio
         {
@@ -42,8 +43,9 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }
         }
 
-
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        { }
+        private void rdBtnVisualizarFuturos_CheckedChanged(object sender, EventArgs e)
+        {
+            gpBoxFiltroFuturos.Enabled = !gpBoxFiltroFuturos.Enabled;
+        }
     }
 }

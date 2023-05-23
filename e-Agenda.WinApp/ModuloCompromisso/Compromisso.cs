@@ -56,6 +56,22 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 $"| Hora De Inicio: {horaDeInicio.ToString("HH:mm")} " +                                
                 $"| Hora De Término: {horaDoTermino.ToString("HH:mm")} ";
         }
-    
+
+        public override string[] Validar()
+        {
+
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(assunto))
+                erros.Add("O campo 'assunto' é obrigatório");
+
+            if (string.IsNullOrEmpty(local))
+                erros.Add("O campo 'local' é obrigatório");
+
+            if (horaDeInicio > horaDoTermino)
+                erros.Add("A hora de conclusão não pode ser menor que a hora de criação");
+
+            return erros.ToArray();
+        }
     }
 }

@@ -99,7 +99,7 @@
             // 
             datePickerCompromisso.Location = new Point(113, 76);
             datePickerCompromisso.Name = "datePickerCompromisso";
-            datePickerCompromisso.Size = new Size(182, 23);
+            datePickerCompromisso.Size = new Size(230, 23);
             datePickerCompromisso.TabIndex = 11;
             // 
             // datePickerHoraDeInicio
@@ -108,6 +108,7 @@
             datePickerHoraDeInicio.Format = DateTimePickerFormat.Time;
             datePickerHoraDeInicio.Location = new Point(112, 105);
             datePickerHoraDeInicio.Name = "datePickerHoraDeInicio";
+            datePickerHoraDeInicio.ShowUpDown = true;
             datePickerHoraDeInicio.Size = new Size(108, 23);
             datePickerHoraDeInicio.TabIndex = 12;
             datePickerHoraDeInicio.Value = new DateTime(2023, 5, 18, 14, 52, 34, 0);
@@ -118,6 +119,7 @@
             datePickerHoraTermino.Format = DateTimePickerFormat.Time;
             datePickerHoraTermino.Location = new Point(112, 134);
             datePickerHoraTermino.Name = "datePickerHoraTermino";
+            datePickerHoraTermino.ShowUpDown = true;
             datePickerHoraTermino.Size = new Size(108, 23);
             datePickerHoraTermino.TabIndex = 13;
             datePickerHoraTermino.Value = new DateTime(2023, 5, 18, 14, 53, 0, 0);
@@ -135,6 +137,8 @@
             // 
             // cmbBoxListaDeContatos
             // 
+            cmbBoxListaDeContatos.DisplayMember = "nome";
+            cmbBoxListaDeContatos.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxListaDeContatos.FormattingEnabled = true;
             cmbBoxListaDeContatos.Location = new Point(22, 193);
             cmbBoxListaDeContatos.Name = "cmbBoxListaDeContatos";
@@ -151,6 +155,7 @@
             rdBtnOpcaoRemoto.TabStop = true;
             rdBtnOpcaoRemoto.Text = "Remoto:";
             rdBtnOpcaoRemoto.UseVisualStyleBackColor = true;
+            rdBtnOpcaoRemoto.CheckedChanged += rdBtnOpcaoRemoto_CheckedChanged;
             // 
             // rdBtnOpcaoPresencial
             // 
@@ -162,6 +167,7 @@
             rdBtnOpcaoPresencial.TabStop = true;
             rdBtnOpcaoPresencial.Text = "Presencial:";
             rdBtnOpcaoPresencial.UseVisualStyleBackColor = true;
+            rdBtnOpcaoPresencial.CheckedChanged += rdBtnOpcaoPresencial_CheckedChanged;
             // 
             // groupBox1
             // 

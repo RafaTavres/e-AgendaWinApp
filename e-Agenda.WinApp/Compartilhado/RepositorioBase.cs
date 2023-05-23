@@ -11,8 +11,6 @@ namespace e_Agenda.WinApp.Compartilhado
     {
         protected int id = 1;
         protected List<TEntidade> listaEntidades = new List<TEntidade>();
-        public abstract bool VerificaObjetosComErro(TEntidade entidade);
-
         private int IncrementaId()
         {
             return id++;

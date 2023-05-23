@@ -11,6 +11,8 @@ namespace e_Agenda.WinApp.Compartilhado
         public int id;
 
         public abstract void Atualizar(TEntidade entidadeAtualizada);
+
+        public abstract string[] Validar();
     }
    
 }

@@ -16,13 +16,14 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public string titulo;
         public string descricao;
         public DateTime dataCriacao;
+        public DateTime dataPrazo;
         public DateTime dataConclusao;
         public double percentualConcluido;
         public PrioridadeTarefaEnum prioridade;
         public bool estahConcluida;
         public List<Item> itens;
 
-        public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida)
+        public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida, DateTime dataPrazo)
         {
             this.titulo = titulo;
             this.descricao = descricao;
@@ -30,6 +31,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             this.percentualConcluido = percentualConcluido;
             this.prioridade = prioridade;
             this.estahConcluida = estahConcluida;
+            this.dataPrazo = dataPrazo;
             itens = new();
         }
 
@@ -42,15 +44,32 @@ namespace e_Agenda.WinApp.ModuloTarefa
             dataConclusao = tarefaAtualizada.dataConclusao;
             percentualConcluido = tarefaAtualizada.percentualConcluido;
             estahConcluida = tarefaAtualizada.estahConcluida;
+            dataPrazo = tarefaAtualizada.dataPrazo;
         }
 
         public override string ToString()
         {
             if (estahConcluida == true)
             {
-                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
+                return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}, Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}, Concluída: Sim";
             }
-            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Concluída: Não";
+            return $"Id: {id}, Título: {titulo}, Prioridade: {prioridade}, Descrição: {descricao}, Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}, Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}, Concluída: Não";
+        }
+
+        public override string[] Validar()
+        {
+            List<string> erros = new List<string>();
+
+            if (string.IsNullOrEmpty(titulo))
+                erros.Add("O campo 'titulo' é obrigatório");
+
+            if (string.IsNullOrEmpty(descricao))
+                erros.Add("O campo 'descricao' é obrigatório");
+
+            if (dataCriacao > dataPrazo)
+                erros.Add("A data de prazo não pode ser menor que a data de criação");
+
+            return erros.ToArray();
         }
     }
 }

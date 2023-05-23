@@ -67,9 +67,5 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
         }
 
-        public override bool VerificaObjetosComErro(Tarefa t)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

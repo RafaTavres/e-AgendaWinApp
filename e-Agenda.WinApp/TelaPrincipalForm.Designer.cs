@@ -49,7 +49,7 @@
             toolStripSeparator1 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            lblRodape = new ToolStripStatusLabel();
             panelRegistros = new Panel();
             menuStrip2.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -219,18 +219,18 @@
             // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { lblRodape });
             statusStrip1.Location = new Point(0, 428);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1071, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // lblRodape
             // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(118, 17);
-            toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            lblRodape.Name = "lblRodape";
+            lblRodape.Size = new Size(118, 17);
+            lblRodape.Text = "toolStripStatusLabel1";
             // 
             // panelRegistros
             // 
@@ -280,7 +280,7 @@
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel lblRodape;
         private Panel panelRegistros;
         private ToolStripButton btnInserir;
         private ToolStripButton btnEditar;

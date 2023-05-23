@@ -20,16 +20,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         }
         public List<Compromisso> RetornarCompromissosParaOFuturo(DateTime dataIncial, DateTime dataFinal)
         {
-            return listaEntidades.FindAll(c => c.data >= dataIncial && c.data <= dataFinal);
+            return listaEntidades.FindAll(c => c.data.Date >= dataIncial.Date && c.data <= dataFinal.Date);
         }
         public List<Compromisso> RetornarCompromissosParaOPassado()
         {
-            return listaEntidades.FindAll(c => c.data <= DateTime.UtcNow);
+            return listaEntidades.FindAll(c => c.data.Date <= DateTime.UtcNow.Date);
         }
 
-        public override bool VerificaObjetosComErro(Compromisso c)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

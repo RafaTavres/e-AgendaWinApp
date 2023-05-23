@@ -43,7 +43,7 @@
             label5 = new Label();
             datePickerDataInicio = new DateTimePicker();
             label4 = new Label();
-            datePickerDataTermino = new DateTimePicker();
+            datePickerDataPrazo = new DateTimePicker();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -187,28 +187,28 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(36, 190);
+            label4.Location = new Point(8, 192);
             label4.Name = "label4";
-            label4.Size = new Size(96, 15);
+            label4.Size = new Size(124, 15);
             label4.TabIndex = 33;
-            label4.Text = "Data de Término:";
+            label4.Text = "Prazo para Conclusão:";
             // 
-            // datePickerDataTermino
+            // datePickerDataPrazo
             // 
-            datePickerDataTermino.CustomFormat = "HH:mm";
-            datePickerDataTermino.Format = DateTimePickerFormat.Short;
-            datePickerDataTermino.Location = new Point(138, 184);
-            datePickerDataTermino.Name = "datePickerDataTermino";
-            datePickerDataTermino.Size = new Size(108, 23);
-            datePickerDataTermino.TabIndex = 34;
-            datePickerDataTermino.Value = new DateTime(2023, 5, 18, 14, 52, 34, 0);
+            datePickerDataPrazo.CustomFormat = "HH:mm";
+            datePickerDataPrazo.Format = DateTimePickerFormat.Short;
+            datePickerDataPrazo.Location = new Point(138, 186);
+            datePickerDataPrazo.Name = "datePickerDataPrazo";
+            datePickerDataPrazo.Size = new Size(108, 23);
+            datePickerDataPrazo.TabIndex = 34;
+            datePickerDataPrazo.Value = new DateTime(2023, 5, 18, 14, 52, 34, 0);
             // 
             // TelaTarefaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(478, 267);
-            Controls.Add(datePickerDataTermino);
+            Controls.Add(datePickerDataPrazo);
             Controls.Add(label4);
             Controls.Add(datePickerDataInicio);
             Controls.Add(label5);
@@ -224,6 +224,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "TelaTarefaForm";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaTarefaForm";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -248,6 +249,6 @@
         private Label label5;
         private DateTimePicker datePickerDataInicio;
         private Label label4;
-        private DateTimePicker datePickerDataTermino;
+        private DateTimePicker datePickerDataPrazo;
     }
 }

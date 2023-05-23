@@ -31,14 +31,14 @@
             rdBtnVisualizarFuturos = new RadioButton();
             rdBtnVisualizarPassados = new RadioButton();
             rdBtnVisualizarTodos = new RadioButton();
-            groupBox1 = new GroupBox();
+            gpBoxFiltroFuturos = new GroupBox();
             datePickerDataFinal = new DateTimePicker();
             label1 = new Label();
             datePickerDataInicio = new DateTimePicker();
             label5 = new Label();
             btnFiltrar = new Button();
             btnCancelar = new Button();
-            groupBox1.SuspendLayout();
+            gpBoxFiltroFuturos.SuspendLayout();
             SuspendLayout();
             // 
             // rdBtnVisualizarFuturos
@@ -51,6 +51,7 @@
             rdBtnVisualizarFuturos.TabStop = true;
             rdBtnVisualizarFuturos.Text = "Visualizar somente Compromissos Futuros:";
             rdBtnVisualizarFuturos.UseVisualStyleBackColor = true;
+            rdBtnVisualizarFuturos.CheckedChanged += rdBtnVisualizarFuturos_CheckedChanged;
             // 
             // rdBtnVisualizarPassados
             // 
@@ -74,18 +75,18 @@
             rdBtnVisualizarTodos.Text = "Visualizar todos os Compromissos:";
             rdBtnVisualizarTodos.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gpBoxFiltroFuturos
             // 
-            groupBox1.Controls.Add(datePickerDataFinal);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(datePickerDataInicio);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Location = new Point(35, 141);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(481, 78);
-            groupBox1.TabIndex = 22;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Filtro para os Compromissos Futuros";
+            gpBoxFiltroFuturos.Controls.Add(datePickerDataFinal);
+            gpBoxFiltroFuturos.Controls.Add(label1);
+            gpBoxFiltroFuturos.Controls.Add(datePickerDataInicio);
+            gpBoxFiltroFuturos.Controls.Add(label5);
+            gpBoxFiltroFuturos.Location = new Point(35, 141);
+            gpBoxFiltroFuturos.Name = "gpBoxFiltroFuturos";
+            gpBoxFiltroFuturos.Size = new Size(481, 78);
+            gpBoxFiltroFuturos.TabIndex = 22;
+            gpBoxFiltroFuturos.TabStop = false;
+            gpBoxFiltroFuturos.Text = "Filtro para os Compromissos Futuros";
             // 
             // datePickerDataFinal
             // 
@@ -133,7 +134,6 @@
             btnFiltrar.TabIndex = 24;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = true;
-            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // btnCancelar
             // 
@@ -153,7 +153,7 @@
             ClientSize = new Size(559, 303);
             Controls.Add(btnCancelar);
             Controls.Add(btnFiltrar);
-            Controls.Add(groupBox1);
+            Controls.Add(gpBoxFiltroFuturos);
             Controls.Add(rdBtnVisualizarTodos);
             Controls.Add(rdBtnVisualizarPassados);
             Controls.Add(rdBtnVisualizarFuturos);
@@ -161,8 +161,8 @@
             Name = "TelaFiltroDeCompromissoForm";
             ShowIcon = false;
             Text = "Filtro de Compromisso";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            gpBoxFiltroFuturos.ResumeLayout(false);
+            gpBoxFiltroFuturos.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -172,7 +172,7 @@
         private RadioButton rdBtnVisualizarFuturos;
         private RadioButton rdBtnVisualizarPassados;
         private RadioButton rdBtnVisualizarTodos;
-        private GroupBox groupBox1;
+        private GroupBox gpBoxFiltroFuturos;
         private Label label5;
         private DateTimePicker datePickerDataFinal;
         private Label label1;

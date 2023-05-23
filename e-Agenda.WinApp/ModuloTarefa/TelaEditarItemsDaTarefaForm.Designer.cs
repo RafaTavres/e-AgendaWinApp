@@ -67,10 +67,10 @@
             // lblPorcentagemConcluida
             // 
             lblPorcentagemConcluida.AutoSize = true;
-            lblPorcentagemConcluida.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPorcentagemConcluida.Location = new Point(12, 26);
+            lblPorcentagemConcluida.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPorcentagemConcluida.Location = new Point(12, 27);
             lblPorcentagemConcluida.Name = "lblPorcentagemConcluida";
-            lblPorcentagemConcluida.Size = new Size(115, 21);
+            lblPorcentagemConcluida.Size = new Size(161, 30);
             lblPorcentagemConcluida.TabIndex = 26;
             lblPorcentagemConcluida.Text = "10% Concluido";
             // 
@@ -85,6 +85,7 @@
             Controls.Add(checkListItemsDaTarefa);
             Name = "TelaEditarItemsDaTarefaForm";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Editar Items";
             ResumeLayout(false);
             PerformLayout();

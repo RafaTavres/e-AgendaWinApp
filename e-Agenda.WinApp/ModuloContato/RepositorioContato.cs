@@ -18,10 +18,6 @@ namespace e_Agenda.WinApp.ModuloContato
             return base.Busca(id);
         }
 
-        public override bool VerificaObjetosComErro(Contato c)
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }

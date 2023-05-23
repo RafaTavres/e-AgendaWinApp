@@ -1,15 +1,4 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso;
-using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloTarefa.Dominio;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using e_Agenda.WinApp.ModuloTarefa.Dominio;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -28,8 +17,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 txtId.Text = value.id.ToString();
                 txtTitulo.Text = value.titulo;
                 datePickerDataInicio.Value = value.dataCriacao;
-                datePickerDataTermino.Value = value.dataConclusao;
+                datePickerDataPrazo.Value = value.dataPrazo;
                 txtDescricao.Text = value.descricao;
+
             }
             get
             {
@@ -39,11 +29,29 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            tarefa = ObterTarefa();
+            string[] erros = tarefa.Validar();
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+
+            if (txtId.Text != "0")
+                tarefa.id = Convert.ToInt32(txtId.Text);
+        }
+
+        private Tarefa ObterTarefa()
+        {
             string titulo = txtTitulo.Text;
 
             string descricao = txtDescricao.Text;
 
-            DateTime dataInicio = DateTime.Now;
+            DateTime dataPrazo = datePickerDataPrazo.Value.Date;
+
+            DateTime dataInicio = datePickerDataInicio.Value.Date;
 
             double percentualConcluido = 0;
 
@@ -66,10 +74,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 prioridadeTarefa = PrioridadeTarefaEnum.Baixa;
             }
 
-            tarefa = new Tarefa(titulo, descricao, dataInicio, percentualConcluido, prioridadeTarefa, estahConcluida);
-
-            if (txtId.Text != "0")
-                tarefa.id = Convert.ToInt32(txtId.Text);
+            return tarefa = new Tarefa(titulo, descricao, dataInicio, percentualConcluido, prioridadeTarefa, estahConcluida, dataPrazo);
         }
+
     }
 }

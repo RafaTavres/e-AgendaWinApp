@@ -1,14 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -48,6 +38,24 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            compromisso = ObterCompromisso();
+
+            string[] erros = compromisso.Validar();
+
+            if (erros.Length > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+
+                DialogResult = DialogResult.None;
+            }
+
+            if (txtId.Text != "0")
+                compromisso.id = Convert.ToInt32(txtId.Text);
+
+        }
+
+        private Compromisso ObterCompromisso()
+        {
             string assunto = txtAssunto.Text;
 
             DateTime data = datePickerCompromisso.Value;
@@ -56,17 +64,22 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             DateTime horaDoTermino = datePickerHoraTermino.Value;
 
-            string local;
+            string local = "";
 
             bool ehRemoto = rdBtnOpcaoRemoto.Checked;
 
-            if (ehRemoto == true)
+            if (rdBtnOpcaoRemoto.Checked == true)
+            {
                 local = txtLocalRemoto.Text;
+            }
             else
+            if (rdBtnOpcaoPresencial.Checked == true)
+            {
                 local = txtLocalPresencial.Text;
-
+            }
 
             Contato contato = null;
+
             if (cmbBoxListaDeContatos.SelectedItem == null || cmbBoxListaDeContatos.Enabled == false)
             {
                 contato = new Contato("Não Informado", "Não Informado", "Não Informado", "Não Informado", "Não Informado");
@@ -75,23 +88,29 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             {
                 contato = (Contato)cmbBoxListaDeContatos.SelectedItem;
             }
-            compromisso = new Compromisso(assunto, local, data, horaDeInicio, horaDoTermino, ehRemoto, contato);
 
-            if (txtId.Text != "0")
-                compromisso.id = Convert.ToInt32(txtId.Text);
 
+            return compromisso = new Compromisso(assunto, local, data, horaDeInicio, horaDoTermino, ehRemoto, contato);
         }
 
         private void checkBoxTemContato_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxTemContato.Checked == true)
-            {
-                cmbBoxListaDeContatos.Enabled = true;
-            }
-            else if (checkBoxTemContato.Checked == false)
-            {
-                cmbBoxListaDeContatos.Enabled = false;
-            }
+            cmbBoxListaDeContatos.Enabled = !cmbBoxListaDeContatos.Enabled;
+            cmbBoxListaDeContatos.SelectedIndex = -1;
+        }
+
+        private void rdBtnOpcaoRemoto_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLocalRemoto.Enabled = true; 
+            txtLocalPresencial.Enabled = false;
+            txtLocalPresencial.Text = "";
+        }
+
+        private void rdBtnOpcaoPresencial_CheckedChanged(object sender, EventArgs e)
+        {           
+            txtLocalPresencial.Enabled = true;
+            txtLocalRemoto.Enabled = false;
+            txtLocalRemoto.Text = "";
         }
     }
 }
