@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloTarefa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace e_Agenda.WinApp.ModuloContato
     public class ControladorContato : ControladorBase
     {
         private RepositorioContato repositorioContato;
-        private ListagemContatoControl listagemContato;
+        private TabelaContatoControl tabelaContato;
 
         public ControladorContato(RepositorioBase<Contato> repositorio)
         {
@@ -41,12 +42,15 @@ namespace e_Agenda.WinApp.ModuloContato
         public override bool BotaoAdicionarItensAtivado  => false; 
 
 
-        public override bool BotaoEditarItensAtivado  => false; 
+        public override bool BotaoEditarItensAtivado  => false;
 
+        public override string ToolTipCategoriasDasDespesas => "Indiponivel";
+
+        public override bool BotaoCategoriasDasDespesasAtivado => false;
 
         public override void Editar()
         {
-            Contato contato = listagemContato.ObterContatoSelecionado();
+            Contato contato = ObterContatoSelecionado();
 
             if (contato == null)
             {
@@ -73,7 +77,7 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override void Deletar()
         {
-            Contato contato = listagemContato.ObterContatoSelecionado();
+            Contato contato = ObterContatoSelecionado();
 
             if (contato == null)
             {
@@ -115,17 +119,17 @@ namespace e_Agenda.WinApp.ModuloContato
         private void CarregarContatos()
         {
             List<Contato> contatos = repositorioContato.RetornarTodos();     
-            listagemContato.AtualizarRegistros(contatos);
+            tabelaContato.AtualizarRegistros(contatos);
         }
 
         public override UserControl ObterListagem()
         {
-            if (listagemContato == null)
-                listagemContato = new ListagemContatoControl();
+            if (tabelaContato == null)
+                tabelaContato = new TabelaContatoControl();
 
             CarregarContatos();
 
-            return listagemContato;
+            return tabelaContato;
         }
 
         public override string ObterTipoCadastro()
@@ -133,19 +137,11 @@ namespace e_Agenda.WinApp.ModuloContato
             return "Cadastro de Contatos";
         }
 
-        public override void Filtrar()
+        private Contato ObterContatoSelecionado()
         {
-            throw new NotImplementedException();
-        }
+            int id = tabelaContato.ObterIdSelecionado();
 
-        public override void AdicionarItemsNaListaDeTarefa()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void EditarItensDaTarefa()
-        {
-            throw new NotImplementedException();
+            return repositorioContato.Busca(id);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso.Dominio;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso.Dominio;
 using e_Agenda.WinApp.ModuloTarefa.Dominio;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace e_Agenda.WinApp.ModuloTarefa.Tela_Filtro_Tarefa
         public TelaFiltroTarefasForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
+
         }
         public PrioridadeTarefaEnum PrioridadeTarefa
         {
@@ -32,6 +35,20 @@ namespace e_Agenda.WinApp.ModuloTarefa.Tela_Filtro_Tarefa
                     return PrioridadeTarefaEnum.Baixa;
                 else
                     return PrioridadeTarefaEnum.Todos;
+            }
+        }
+
+        public StatusTarefaEnum? StatusDaTarefa
+        {
+            get
+            {
+                if (rdBtnTarefasPendentes.Checked)
+                    return StatusTarefaEnum.Pendente;
+
+                else if (rdBtnTarefasConcluidas.Checked)
+                    return StatusTarefaEnum.Concluida;
+                else 
+                    return null;
             }
         }
 

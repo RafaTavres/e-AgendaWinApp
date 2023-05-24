@@ -1,13 +1,20 @@
-﻿using e_Agenda.WinApp.ModuloTarefa.Dominio;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloTarefa.Dominio;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaTarefaForm : Form
     {
         private Tarefa tarefa;
-        public TelaTarefaForm()
+        public TelaTarefaForm(bool ehEdicao)
         {
             InitializeComponent();
+            this.ConfigurarDialog();
+
+            if(ehEdicao == true)
+            {
+                datePickerDataInicio.Enabled = false;
+            }
         }
 
         public Tarefa Tarefa
@@ -53,11 +60,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             DateTime dataInicio = datePickerDataInicio.Value.Date;
 
-            double percentualConcluido = 0;
+            decimal percentualConcluido = 0;
 
             PrioridadeTarefaEnum prioridadeTarefa = PrioridadeTarefaEnum.Baixa;
 
-            bool estahConcluida = false;
+            StatusTarefaEnum statusTarefa = StatusTarefaEnum.Pendente;
 
             if (rdBtnPrioridadeAlta.Checked)
             {
@@ -74,7 +81,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 prioridadeTarefa = PrioridadeTarefaEnum.Baixa;
             }
 
-            return tarefa = new Tarefa(titulo, descricao, dataInicio, percentualConcluido, prioridadeTarefa, estahConcluida, dataPrazo);
+            return tarefa = new Tarefa(titulo, descricao, dataInicio, percentualConcluido, prioridadeTarefa, statusTarefa, dataPrazo);
         }
 
     }

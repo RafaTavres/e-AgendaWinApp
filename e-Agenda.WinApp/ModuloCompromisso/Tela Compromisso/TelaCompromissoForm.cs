@@ -1,4 +1,6 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
+using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -8,6 +10,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public TelaCompromissoForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
             cmbBoxListaDeContatos.Enabled = false;
         }
         public Compromisso Compromisso
@@ -101,13 +104,13 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void rdBtnOpcaoRemoto_CheckedChanged(object sender, EventArgs e)
         {
-            txtLocalRemoto.Enabled = true; 
+            txtLocalRemoto.Enabled = true;
             txtLocalPresencial.Enabled = false;
             txtLocalPresencial.Text = "";
         }
 
         private void rdBtnOpcaoPresencial_CheckedChanged(object sender, EventArgs e)
-        {           
+        {
             txtLocalPresencial.Enabled = true;
             txtLocalRemoto.Enabled = false;
             txtLocalRemoto.Text = "";

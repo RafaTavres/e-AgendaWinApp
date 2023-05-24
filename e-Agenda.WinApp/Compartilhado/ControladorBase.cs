@@ -17,23 +17,38 @@ namespace e_Agenda.WinApp.Compartilhado
         public abstract string ToolTipFiltrar { get; }
         public abstract string ToolTipAdicionarItens { get; }
         public abstract string ToolTipEditarItens { get; }
-
+        public abstract string ToolTipCategoriasDasDespesas { get; }
         public abstract bool BotaoInserirAtivado { get; }
         public abstract bool BotaoDeletarAtivado { get; }
         public abstract bool BotaoEditarAtivado { get; }
         public abstract bool BotaoFiltrarAtivado { get; }
         public abstract bool BotaoAdicionarItensAtivado { get; }
         public abstract bool BotaoEditarItensAtivado { get; }
+        public abstract bool BotaoCategoriasDasDespesasAtivado { get; }
 
         public abstract void Inserir();
 
         public abstract void Editar();
 
-        public abstract void Filtrar();
+        public virtual void Filtrar()
+        {
+
+        }
+
+        public virtual void VerCategoriasDasDespesas()
+        {
+
+        }
 
         public abstract void Deletar();
-        public abstract void AdicionarItemsNaListaDeTarefa();
-        public abstract void EditarItensDaTarefa();
+        public virtual void AdicionarItemsNaListaDeTarefa()
+        {
+
+        }
+        public virtual void EditarItensDaTarefa()
+        {
+
+        }
         public abstract UserControl ObterListagem();
 
         public abstract string ObterTipoCadastro();

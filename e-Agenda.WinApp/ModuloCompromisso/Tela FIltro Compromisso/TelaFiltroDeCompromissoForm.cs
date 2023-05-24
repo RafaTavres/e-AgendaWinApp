@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso.Dominio;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso.Dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public TelaFiltroDeCompromissoForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
             gpBoxFiltroFuturos.Enabled = false;
         }
         public DateTime DataDeInicio

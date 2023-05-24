@@ -1,6 +1,6 @@
-﻿namespace e_Agenda.WinApp.ModuloTarefa
+﻿namespace e_Agenda.WinApp.ModuloDespesas
 {
-    partial class ListagemTarefaControl
+    partial class TabelaDespesasControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listTarefas = new ListBox();
+            tabelaDepesas = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tabelaDepesas).BeginInit();
             SuspendLayout();
             // 
-            // listTarefas
+            // tabelaDepesas
             // 
-            listTarefas.Dock = DockStyle.Fill;
-            listTarefas.FormattingEnabled = true;
-            listTarefas.ItemHeight = 15;
-            listTarefas.Location = new Point(0, 0);
-            listTarefas.Name = "listTarefas";
-            listTarefas.Size = new Size(519, 369);
-            listTarefas.TabIndex = 0;
+            tabelaDepesas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaDepesas.Location = new Point(139, 85);
+            tabelaDepesas.Name = "tabelaDepesas";
+            tabelaDepesas.RowTemplate.Height = 25;
+            tabelaDepesas.Size = new Size(240, 150);
+            tabelaDepesas.TabIndex = 0;
             // 
-            // ListagemTarefaControl
+            // TabelaContatoControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listTarefas);
-            Name = "ListagemTarefaControl";
-            Size = new Size(519, 369);
+            Controls.Add(tabelaDepesas);
+            Name = "TabelaContatoControl";
+            Size = new Size(564, 388);
+            ((System.ComponentModel.ISupportInitialize)tabelaDepesas).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listTarefas;
+        private DataGridView tabelaDepesas;
     }
 }

@@ -105,7 +105,7 @@
             // datePickerHoraDeInicio
             // 
             datePickerHoraDeInicio.CustomFormat = "HH:mm";
-            datePickerHoraDeInicio.Format = DateTimePickerFormat.Time;
+            datePickerHoraDeInicio.Format = DateTimePickerFormat.Custom;
             datePickerHoraDeInicio.Location = new Point(112, 105);
             datePickerHoraDeInicio.Name = "datePickerHoraDeInicio";
             datePickerHoraDeInicio.ShowUpDown = true;
@@ -116,7 +116,7 @@
             // datePickerHoraTermino
             // 
             datePickerHoraTermino.CustomFormat = "HH:mm";
-            datePickerHoraTermino.Format = DateTimePickerFormat.Time;
+            datePickerHoraTermino.Format = DateTimePickerFormat.Custom;
             datePickerHoraTermino.Location = new Point(112, 134);
             datePickerHoraTermino.Name = "datePickerHoraTermino";
             datePickerHoraTermino.ShowUpDown = true;

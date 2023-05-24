@@ -14,7 +14,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class ControladorTarefa : ControladorBase
     {
-        private ListagemTarefaControl listagemTarefa;
+        private TabelaTarefaControl tabelaTarefa;
         private RepositorioTarefa repositorioTarefas;
         public ControladorTarefa(RepositorioBase<Tarefa> repositorio)
         {
@@ -42,11 +42,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override bool BotaoAdicionarItensAtivado  =>  true;  
 
-        public override bool BotaoEditarItensAtivado  =>  true;  
+        public override bool BotaoEditarItensAtivado  =>  true;
+
+        public override string ToolTipCategoriasDasDespesas => "Não habiltato";
+
+        public override bool BotaoCategoriasDasDespesasAtivado => false;
 
         public override void Editar()
         {
-            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+            Tarefa tarefa = ObterTarefaSelecionada();
 
             if (tarefa == null)
             {
@@ -58,7 +62,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 return;
             }
 
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm(ehEdicao: true);
             telaTarefa.Tarefa = tarefa;
 
             DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
@@ -72,7 +76,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override void Deletar()
         {
-            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+            Tarefa tarefa = ObterTarefaSelecionada();
 
             if (tarefa == null)
             {
@@ -99,54 +103,70 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void CarregarTarefas()
         {
-            List<Tarefa> tarefas = repositorioTarefas.RetornarTodos();
-            listagemTarefa.AtualizarRegistros(tarefas);
+            List<Tarefa> tarefas = repositorioTarefas.SelecionarTodosOrdenadosPorPrioridade();
+            tabelaTarefa.AtualizarRegistros(tarefas);
         }
 
 
 
         public override void Filtrar()
         {
-            TelaFiltroTarefasForm telaFIltro = new();
+            TelaFiltroTarefasForm telaFiltro = new();
 
-            if (telaFIltro.ShowDialog() == DialogResult.OK)
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
             {
-                PrioridadeTarefaEnum prioridadeTarefa = telaFIltro.PrioridadeTarefa;
-                CarregarCompromissosComFiltro(prioridadeTarefa);
+                PrioridadeTarefaEnum prioridadeTarefa = telaFiltro.PrioridadeTarefa;
+                StatusTarefaEnum? statusTarefa = telaFiltro.StatusDaTarefa;
+                CarregarCompromissosComFiltro(prioridadeTarefa, statusTarefa);
             }
         }
 
 
 
-        private void CarregarCompromissosComFiltro(PrioridadeTarefaEnum prioridadeTarefa)
+        private void CarregarCompromissosComFiltro(PrioridadeTarefaEnum prioridadeTarefa, StatusTarefaEnum? statusTarefa)
         {
+
             List<Tarefa> tarefas;
-            switch (prioridadeTarefa)
+
+            switch (statusTarefa)
             {
-                case PrioridadeTarefaEnum.Alta :
-                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeAlta();
+                case StatusTarefaEnum.Pendente:
+                    tarefas = repositorioTarefas.RetornarTarefasPendentes();
                     break;
-                case PrioridadeTarefaEnum.Media:
-                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeMedia();
-                    break;
-                case PrioridadeTarefaEnum.Baixa:
-                    tarefas = repositorioTarefas.RetornarTarefasComPrioridadeBaixa();
-                    break;
+                case StatusTarefaEnum.Concluida:
+                    tarefas = repositorioTarefas.RetornarTarefasConcluidas();
+                    break;              
                 default:
-                    tarefas = repositorioTarefas.RetornarTodos();
+                    tarefas = repositorioTarefas.SelecionarTodosOrdenadosPorPrioridade();
                     break;
             }
 
-            listagemTarefa.AtualizarRegistros(tarefas);
+            if (statusTarefa == null)
+            {
+                switch (prioridadeTarefa)
+                {
+                    case PrioridadeTarefaEnum.Alta:
+                        tarefas = repositorioTarefas.RetornarTarefasComPrioridadeAlta();
+                        break;
+                    case PrioridadeTarefaEnum.Media:
+                        tarefas = repositorioTarefas.RetornarTarefasComPrioridadeMedia();
+                        break;
+                    case PrioridadeTarefaEnum.Baixa:
+                        tarefas = repositorioTarefas.RetornarTarefasComPrioridadeBaixa();
+                        break;
+                    default:
+                        tarefas = repositorioTarefas.SelecionarTodosOrdenadosPorPrioridade();
+                        break;
+                }
+            }
+
+            tabelaTarefa.AtualizarRegistros(tarefas);
         }
-
-
-
 
 
         public override void Inserir()
         {
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm(ehEdicao: false);
 
             DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
 
@@ -162,12 +182,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override UserControl ObterListagem()
         {
-            if (listagemTarefa == null)
-                listagemTarefa = new ListagemTarefaControl();
+            if (tabelaTarefa == null)
+                tabelaTarefa = new TabelaTarefaControl();
 
             CarregarTarefas();
 
-            return listagemTarefa;
+            return tabelaTarefa;
         }
 
         public override string ObterTipoCadastro()
@@ -177,7 +197,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override void AdicionarItemsNaListaDeTarefa()
         {
-            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+            Tarefa tarefa = ObterTarefaSelecionada();
+
             if (tarefa == null)
             {
                 MessageBox.Show($"Selecione uma Tarefa primeiro!",
@@ -187,7 +208,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 return;
             }
+            
+
+
             TelaAdicionarItemsNaTarefaForm telaItem = new();
+
             telaItem.ShowDialog();
 
 
@@ -195,16 +220,24 @@ namespace e_Agenda.WinApp.ModuloTarefa
             if(telaItem.DialogResult == DialogResult.OK)
             {
                 Item item = telaItem.Item;
+                
                 tarefa.itens.Add(item);
+
+                List<Item> itensConcluidos = repositorioTarefas.RetornarItemsConcluidos(tarefa.itens);
+
+                tarefa.CalculaPorcentagemConcluida(itensConcluidos, tarefa.itens);
+
+                tarefa.ConcluiTarefa();
+
                 CarregarTarefas();
             }
         }
 
         public override void EditarItensDaTarefa()
         {
-            TelaEditarItemsDaTarefaForm telaEditarItems = new();
+            Tarefa tarefa = ObterTarefaSelecionada();
 
-            Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+            TelaEditarItemsDaTarefaForm telaEditarItems = new(tarefa);
 
             if (tarefa == null)
             {
@@ -224,17 +257,30 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             if (telaEditarItems.DialogResult == DialogResult.OK)
             {
-                List<Item> itensCheckados = telaEditarItems.RetornarItemsChecados();                
+                List<Item> itensCheckados = telaEditarItems.RetornarItemsChecados();
+                List<Item> itensPendentes = telaEditarItems.ObterItensPendentes();
 
-                repositorioTarefas.CheckaItemsCompletos(itensCheckados, tarefa.itens);
 
-                tarefa.percentualConcluido = repositorioTarefas.CalculaPorcentagemConcluida(itensCheckados,tarefa.itens);
+                repositorioTarefas.MarcaItemsCompletos(itensCheckados, tarefa.itens);
 
-                repositorioTarefas.FinalizaTarefa(tarefa);
+                repositorioTarefas.DesmarcaItemsImcompletos(itensPendentes, tarefa.itens);
+
+                List<Item> itensConcluidos = repositorioTarefas.RetornarItemsConcluidos(tarefa.itens);
+
+                tarefa.CalculaPorcentagemConcluida(itensConcluidos, tarefa.itens);
+
+                tarefa.ConcluiTarefa();
 
                 CarregarTarefas();
             }           
 
+        }
+
+        private Tarefa ObterTarefaSelecionada()
+        {
+            int id = tabelaTarefa.ObterIdSelecionado();
+
+            return repositorioTarefas.Busca(id);
         }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Dominio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -23,23 +17,37 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public List<Tarefa> RetornarTarefasComPrioridadeAlta()
         {
-            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Alta);
+            return listaEntidades.FindAll(t => t.prioridade == PrioridadeTarefaEnum.Alta);
         }
 
         public List<Tarefa> RetornarTarefasComPrioridadeMedia()
         {
-            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Media);
+            return listaEntidades.FindAll(t => t.prioridade == PrioridadeTarefaEnum.Media);
         }
 
         public List<Tarefa> RetornarTarefasComPrioridadeBaixa()
         {
-            return listaEntidades.FindAll(c => c.prioridade == PrioridadeTarefaEnum.Baixa);
+            return listaEntidades.FindAll(t => t.prioridade == PrioridadeTarefaEnum.Baixa);
         }
 
+        public List<Tarefa> RetornarTarefasPendentes()
+        {
+            return listaEntidades.FindAll(t => t.statusDaTarefa == StatusTarefaEnum.Pendente);
+        }
 
+        public List<Tarefa> RetornarTarefasConcluidas()
+        {
+            return listaEntidades.FindAll(t => t.statusDaTarefa == StatusTarefaEnum.Concluida);
+        }
 
+        public List<Tarefa> SelecionarTodosOrdenadosPorPrioridade()
+        {
+            return listaEntidades
+                .OrderByDescending(t => t.prioridade)
+                .ToList();
+        }
 
-        public void CheckaItemsCompletos(List<Item> itemsCheckados, List<Item> itemsAtuais)
+        public void MarcaItemsCompletos(List<Item> itemsCheckados, List<Item> itemsAtuais)
         {
             foreach (var itemCheckado in itemsCheckados)
             {
@@ -47,46 +55,47 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 {
                     if(itemAtual == itemCheckado)
                     {
-                        itemAtual.estahConcluida = true;
-                        itemAtual.dataConclusao = DateTime.Now.Date;
-                    }
-                    else
-                    {
-                        itemAtual.estahConcluida = false;
-                        itemAtual.dataConclusao = DateTime.MinValue;
-                    }
+                         itemAtual.estahConcluida = true;
+                         itemAtual.dataConclusao = DateTime.Now.Date;
+                        
+                    }                   
                 }
             }           
         }
 
-        public double CalculaPorcentagemConcluida(List<Item> itemsCheckados,List<Item> itemsAtuais)
+        public void DesmarcaItemsImcompletos(List<Item> itemsDesmarcados, List<Item> itemsAtuais)
         {
-            double porcentagem = 0;
-            try
+            foreach (var itemDesmarcado in itemsDesmarcados)
             {
-                double f = itemsAtuais.Count() / itemsCheckados.Count();
-                porcentagem = 100 / f;
+                foreach (var itemAtual in itemsAtuais)
+                {
+                    if (itemAtual == itemDesmarcado)
+                    {
+                        itemAtual.estahConcluida = false;
+                        itemAtual.dataConclusao = DateTime.MinValue;
+                        
+                    }
+                }
             }
-            catch(DivideByZeroException)
-            {
-                
-            }                         
-            return porcentagem;
         }
 
-        public void FinalizaTarefa(Tarefa tarefa)
+
+        public List<Item> RetornarItemsConcluidos(List<Item> itensChecados)
         {
-            if (tarefa.percentualConcluido == 100)
+            List<Item> itensConcluidos = new();
+
+            foreach (var item in itensChecados)
             {
-                tarefa.estahConcluida = true;
-                tarefa.dataConclusao = DateTime.UtcNow.Date;
+                if (item.estahConcluida == true)
+                {
+                    itensConcluidos.Add(item);
+                }
             }
-            else
-            {
-                tarefa.estahConcluida = false;
-                tarefa.dataConclusao = DateTime.MinValue;
-            }
+            return itensConcluidos;
         }
+
+
+        
 
     }
 }

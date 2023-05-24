@@ -1,6 +1,6 @@
-﻿namespace e_Agenda.WinApp.ModuloContato
+﻿namespace e_Agenda.WinApp.ModuloDespesas
 {
-    partial class ListagemContatoControl
+    partial class TabelaCategoriasControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listContato = new ListBox();
+            tabelaCategorias = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tabelaCategorias).BeginInit();
             SuspendLayout();
             // 
-            // listContato
+            // tabelaCategorias
             // 
-            listContato.Dock = DockStyle.Fill;
-            listContato.FormattingEnabled = true;
-            listContato.ItemHeight = 15;
-            listContato.Location = new Point(0, 0);
-            listContato.Name = "listContato";
-            listContato.Size = new Size(594, 405);
-            listContato.TabIndex = 0;
+            tabelaCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaCategorias.Location = new Point(3, 3);
+            tabelaCategorias.Name = "tabelaCategorias";
+            tabelaCategorias.RowTemplate.Height = 25;
+            tabelaCategorias.Size = new Size(530, 462);
+            tabelaCategorias.TabIndex = 0;
             // 
-            // ListagemContatoControl
+            // TabelaCategoriasControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listContato);
-            Name = "ListagemContatoControl";
-            Size = new Size(594, 405);
+            Controls.Add(tabelaCategorias);
+            Name = "TabelaCategoriasControl";
+            Size = new Size(536, 468);
+            ((System.ComponentModel.ISupportInitialize)tabelaCategorias).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listContato;
+        private DataGridView tabelaCategorias;
     }
 }

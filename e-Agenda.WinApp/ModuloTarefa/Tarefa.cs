@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
+
     public class Tarefa : EntidadeBase<Tarefa>
     {
         public string titulo;
@@ -18,19 +20,19 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public DateTime dataCriacao;
         public DateTime dataPrazo;
         public DateTime dataConclusao;
-        public double percentualConcluido;
+        public decimal percentualConcluido;
         public PrioridadeTarefaEnum prioridade;
-        public bool estahConcluida;
+        public StatusTarefaEnum statusDaTarefa;
         public List<Item> itens;
 
-        public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida, DateTime dataPrazo)
+        public Tarefa(string titulo, string descricao, DateTime dataCriacao, decimal percentualConcluido, PrioridadeTarefaEnum prioridade, StatusTarefaEnum statusDaTarefa, DateTime dataPrazo)
         {
             this.titulo = titulo;
             this.descricao = descricao;
             this.dataCriacao = dataCriacao;
             this.percentualConcluido = percentualConcluido;
             this.prioridade = prioridade;
-            this.estahConcluida = estahConcluida;
+            this.statusDaTarefa = statusDaTarefa;
             this.dataPrazo = dataPrazo;
             itens = new();
         }
@@ -42,31 +44,67 @@ namespace e_Agenda.WinApp.ModuloTarefa
             prioridade = tarefaAtualizada.prioridade;
             dataConclusao = tarefaAtualizada.dataConclusao;
             percentualConcluido = tarefaAtualizada.percentualConcluido;
-            estahConcluida = tarefaAtualizada.estahConcluida;
+            statusDaTarefa = tarefaAtualizada.statusDaTarefa;
             dataPrazo = tarefaAtualizada.dataPrazo;
         }
 
         public override string ToString()
         {
-            if (estahConcluida == true)
+            if (statusDaTarefa == StatusTarefaEnum.Concluida)
             {
                 return $"Id: {id}" +
                     $" | Título: {titulo}" +
-                    $" | Prioridade: {prioridade}" +
+                    $" | Prioridade: {prioridade}" + 
+                    $" | Percentual Concluído: {Math.Round(percentualConcluido),2}" +
                     $" | Descrição: {descricao}" +
                     $" | Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}" +
                     $" | Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}" +
                     $" | Data de Conclusão: {dataConclusao.ToString("dd/MMM/yyyy")}" +
-                    $" | Concluída: Sim";
+                    $" | {statusDaTarefa}";
             }
             return $"Id: {id}" +
                 $" | Título: {titulo}" +
                 $" | Prioridade: {prioridade}" +
+                $" | Percentual Concluído: {Math.Round(percentualConcluido),2}" +
                 $" | Descrição: {descricao}" +
                 $" | Data de Criação: {dataCriacao.ToString("dd/MMM/yyyy")}" +
                 $" | Prazo: {dataPrazo.ToString("dd/MMM/yyyy")}" +
-                $" | Concluída: Não";
+                $" | {statusDaTarefa}";
         }
+
+        public void ConcluiTarefa()
+        {
+            if (percentualConcluido == 100)
+            {
+                statusDaTarefa = StatusTarefaEnum.Concluida;
+                dataConclusao = DateTime.UtcNow.Date;
+            }
+            else
+            {
+                statusDaTarefa = StatusTarefaEnum.Pendente;
+                dataConclusao = DateTime.MinValue;
+            }
+        }
+        public void AdicionaItem(Item item)
+        {
+            itens.Add(item);
+        }
+
+
+        public decimal CalculaPorcentagemConcluida(List<Item> itemsCheckados, List<Item> itemsAtuais)
+        {
+            try
+            {
+                decimal f = Convert.ToDecimal(itemsAtuais.Count()) / Convert.ToDecimal(itemsCheckados.Count());
+                percentualConcluido = 100 / f;
+            }
+            catch (DivideByZeroException)
+            {
+                return percentualConcluido = 0;
+            }
+            return percentualConcluido;
+        }
+
 
         public override string[] Validar()
         {

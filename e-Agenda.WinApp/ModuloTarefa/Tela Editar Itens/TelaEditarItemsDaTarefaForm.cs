@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Agenda.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,45 +13,45 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaEditarItemsDaTarefaForm : Form
     {
-        public TelaEditarItemsDaTarefaForm()
+        public TelaEditarItemsDaTarefaForm(Tarefa tarefa)
         {
             InitializeComponent();
+            this.ConfigurarDialog();
         }
 
         public void AlterarListaDeItems(List<Item> listaDeItens)
         {
             checkListItemsDaTarefa.Items.Clear();
+            int i = 0;
             foreach (var item in listaDeItens)
             {
                 checkListItemsDaTarefa.Items.Add(item);
+                if (item.estahConcluida)
+                    checkListItemsDaTarefa.SetItemChecked(i, true);
+
+                i++;
             }
         }
-        public void AlterarPercentualConcluido(double percentualConcluido)
+        public void AlterarPercentualConcluido(decimal percentualConcluido)
         {
-            lblPorcentagemConcluida.Text = $"{percentualConcluido}% Conluído";
+            lblPorcentagemConcluida.Text = $"{Math.Round(percentualConcluido, 2)}% Conluído";
         }
-        //public void AlterarCorDeFundoDasTarefasConcluidas()
-        //{
-        //    foreach (var item in checkListItemsDaTarefa.Items)
-        //    {
-        //        if (checkListItemsDaTarefa.CheckedItems.Contains(item))
-        //        {
-        //            checkListItemsDaTarefa.Enabled = false;
-        //        }
-        //    }
-        //}
+
         public List<Item> RetornarItemsChecados()
         {
-            List<Item> itensChecados = new List<Item>();
+            return checkListItemsDaTarefa.CheckedItems.Cast<Item>().ToList();
+        }
 
-            foreach (var item in checkListItemsDaTarefa.Items)
-            {
-                if (checkListItemsDaTarefa.CheckedItems.Contains(item))
-                {
-                    itensChecados.Add((Item)item);
-                }
-            }
-            return itensChecados;
+        public List<Item> ObterItensPendentes()
+        {
+            return checkListItemsDaTarefa.Items.Cast<Item>()
+                .Except(RetornarItemsChecados())
+                .ToList();
+        }
+
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

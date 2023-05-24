@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace e_Agenda.WinApp.ModuloContato
         public TelaContatoForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
         }
 
         public Contato Contato

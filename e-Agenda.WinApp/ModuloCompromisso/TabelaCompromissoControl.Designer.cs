@@ -1,6 +1,6 @@
 ﻿namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    partial class ListagemCompromissoControl
+    partial class TabelaCompromissoControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listCompromissos = new ListBox();
+            tabelaCompromisso = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tabelaCompromisso).BeginInit();
             SuspendLayout();
             // 
-            // listCompromissos
+            // tabelaCompromisso
             // 
-            listCompromissos.Dock = DockStyle.Fill;
-            listCompromissos.FormattingEnabled = true;
-            listCompromissos.ItemHeight = 15;
-            listCompromissos.Location = new Point(0, 0);
-            listCompromissos.Name = "listCompromissos";
-            listCompromissos.Size = new Size(493, 313);
-            listCompromissos.TabIndex = 0;
+            tabelaCompromisso.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tabelaCompromisso.Location = new Point(64, 25);
+            tabelaCompromisso.Name = "tabelaCompromisso";
+            tabelaCompromisso.RowTemplate.Height = 25;
+            tabelaCompromisso.Size = new Size(363, 232);
+            tabelaCompromisso.TabIndex = 0;
             // 
-            // ListagemCompromissoControl
+            // TabelaCompromissoControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(listCompromissos);
-            Name = "ListagemCompromissoControl";
+            Controls.Add(tabelaCompromisso);
+            Name = "TabelaCompromissoControl";
             Size = new Size(493, 313);
+            ((System.ComponentModel.ISupportInitialize)tabelaCompromisso).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ListBox listCompromissos;
+        private DataGridView tabelaCompromisso;
     }
 }

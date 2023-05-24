@@ -12,7 +12,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
     public class ControladorCompromisso : ControladorBase
     {
         private RepositorioCompromisso repositorioCompromisso;
-        private ListagemCompromissoControl listagemCompromisso;
+        private TabelaCompromissoControl tabelaCompromisso;
         public RepositorioContato repositorioContato;
 
         public ControladorCompromisso(RepositorioBase<Compromisso> repositorio,RepositorioContato repositorioContato)
@@ -43,11 +43,15 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override bool BotaoAdicionarItensAtivado => false; 
 
-        public override bool BotaoEditarItensAtivado => false; 
+        public override bool BotaoEditarItensAtivado => false;
+
+        public override string ToolTipCategoriasDasDespesas => "Indisponível";
+
+        public override bool BotaoCategoriasDasDespesasAtivado => false;
 
         public override void Editar()
         {
-            Compromisso compromisso = listagemCompromisso.ObterCompromissoSelecionado();
+            Compromisso compromisso = ObterCompromissoSelecionado();
 
             if (compromisso == null)
             {
@@ -72,10 +76,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 CarregarCompromissos();
             }
         }
+
+
         private void CarregarCompromissos()
         {
             List<Compromisso> compromissos = repositorioCompromisso.RetornarTodos();
-            listagemCompromisso.AtualizarRegistros(compromissos);
+            tabelaCompromisso.AtualizarRegistros(compromissos);
         }
         private void CarregarCompromissosComFiltro(StatusCompromissoEnum statusCompromisso, DateTime dataInicial, DateTime dataFinal)
         {
@@ -93,12 +99,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                     break;
             }
 
-            listagemCompromisso.AtualizarRegistros(compromissos);
+            tabelaCompromisso.AtualizarRegistros(compromissos);
         }
 
         public override void Deletar()
         {
-            Compromisso compromisso = listagemCompromisso.ObterCompromissoSelecionado();
+            Compromisso compromisso = ObterCompromissoSelecionado();
 
             if (compromisso == null)
             {
@@ -140,18 +146,24 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override UserControl ObterListagem()
         {
-            if (listagemCompromisso == null)
-                listagemCompromisso = new ListagemCompromissoControl();
+            if (tabelaCompromisso == null)
+                tabelaCompromisso = new TabelaCompromissoControl();
 
             CarregarCompromissos();
 
-            return listagemCompromisso;
+            return tabelaCompromisso;
         }
+
+
+
 
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Compromissos";
         }
+
+
+
 
         public override void Filtrar()
         {
@@ -167,14 +179,15 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }           
         }
 
-        public override void AdicionarItemsNaListaDeTarefa()
+
+
+        private Compromisso ObterCompromissoSelecionado()
         {
-            throw new NotImplementedException();
+            int id = tabelaCompromisso.ObterIdSelecionado();
+
+            return repositorioCompromisso.Busca(id);
         }
 
-        public override void EditarItensDaTarefa()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

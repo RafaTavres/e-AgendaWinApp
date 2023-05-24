@@ -1,6 +1,7 @@
 using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloDespesas;
 using e_Agenda.WinApp.ModuloTarefa;
 
 namespace e_Agenda.WinApp
@@ -12,6 +13,8 @@ namespace e_Agenda.WinApp
         private RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
         private RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
         private RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
+        private RepositorioDespesa repositorioDespesa = new RepositorioDespesa(new List<Despesa>());
+        private RepositorioCategoria repositorioCategoria = new RepositorioCategoria(new List<Categoria>());
 
         private static TelaPrincipalForm telaPrincipal;
         public TelaPrincipalForm()
@@ -36,9 +39,14 @@ namespace e_Agenda.WinApp
         }
 
 
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorCategoria(repositorioCategoria, repositorioDespesa);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
         private void contatoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             controlador = new ControladorContato(repositorioContato);
             ConfigurarTelaPrincipal(controlador);
         }
@@ -53,6 +61,13 @@ namespace e_Agenda.WinApp
         private void compromissosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             controlador = new ControladorCompromisso(repositorioCompromisso, repositorioContato);
+            ConfigurarTelaPrincipal(controlador);
+        }
+
+
+        private void despesasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            controlador = new ControladorDespesa(repositorioDespesa, repositorioCategoria);
             ConfigurarTelaPrincipal(controlador);
         }
 
@@ -87,6 +102,7 @@ namespace e_Agenda.WinApp
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionatNaLista.ToolTipText = controlador.ToolTipAdicionarItens;
             btnEditarItensDaTarefa.ToolTipText = controlador.ToolTipEditarItens;
+            btnVizualizarDespesasDasCategorias.ToolTipText = controlador.ToolTipEditarItens;
         }
         private void ConfigurarAcoesDosBotoes(ControladorBase controlador)
         {
@@ -97,6 +113,7 @@ namespace e_Agenda.WinApp
             btnFiltrar.Enabled = controlador.BotaoFiltrarAtivado;
             btnAdicionatNaLista.Enabled = controlador.BotaoAdicionarItensAtivado;
             btnEditarItensDaTarefa.Enabled = controlador.BotaoEditarItensAtivado;
+            btnVizualizarDespesasDasCategorias.Enabled = controlador.BotaoCategoriasDasDespesasAtivado;
         }
 
 
@@ -139,6 +156,12 @@ namespace e_Agenda.WinApp
             if (VerificaControladorVazio(controlador)) ;
             else
                 controlador.EditarItensDaTarefa();
+        }
+        private void btnVizualizarDespesasDasCategorias_Click(object sender, EventArgs e)
+        {
+            if (VerificaControladorVazio(controlador)) ;
+            else
+                controlador.VerCategoriasDasDespesas();
         }
         private bool VerificaControladorVazio(ControladorBase controlador)
         {
