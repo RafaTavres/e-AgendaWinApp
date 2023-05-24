@@ -58,7 +58,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 return;
             }
 
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm(ehEdicao: true);
             telaTarefa.Tarefa = tarefa;
 
             DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
@@ -146,7 +146,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override void Inserir()
         {
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+            TelaTarefaForm telaTarefa = new TelaTarefaForm(ehEdicao: false);
 
             DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
 
@@ -178,6 +178,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override void AdicionarItemsNaListaDeTarefa()
         {
             Tarefa tarefa = listagemTarefa.ObterTarefaSelecionada();
+
             if (tarefa == null)
             {
                 MessageBox.Show($"Selecione uma Tarefa primeiro!",
@@ -187,7 +188,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 return;
             }
+            
+
+
             TelaAdicionarItemsNaTarefaForm telaItem = new();
+
             telaItem.ShowDialog();
 
 
@@ -195,7 +200,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
             if(telaItem.DialogResult == DialogResult.OK)
             {
                 Item item = telaItem.Item;
+                
                 tarefa.itens.Add(item);
+
+                List<Item> itensConcluidos = repositorioTarefas.RetornarItemsConcluidos(tarefa.itens);
+
+                repositorioTarefas.CalculaPorcentagemConcluida(tarefa, itensConcluidos, tarefa.itens);
+
+                repositorioTarefas.VerificaTarefaConcluida(tarefa);
+
                 CarregarTarefas();
             }
         }
@@ -228,9 +241,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 repositorioTarefas.CheckaItemsCompletos(itensCheckados, tarefa.itens);
 
-                tarefa.percentualConcluido = repositorioTarefas.CalculaPorcentagemConcluida(itensCheckados,tarefa.itens);
+                List<Item> itensConcluidos = repositorioTarefas.RetornarItemsConcluidos(tarefa.itens);
 
-                repositorioTarefas.FinalizaTarefa(tarefa);
+                repositorioTarefas.CalculaPorcentagemConcluida(tarefa, itensConcluidos, tarefa.itens);
+
+                repositorioTarefas.VerificaTarefaConcluida(tarefa);
 
                 CarregarTarefas();
             }           

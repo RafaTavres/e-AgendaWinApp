@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Agenda.WinApp.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public TelaEditarItemsDaTarefaForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
         }
 
         public void AlterarListaDeItems(List<Item> listaDeItens)
@@ -25,20 +27,13 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 checkListItemsDaTarefa.Items.Add(item);
             }
         }
-        public void AlterarPercentualConcluido(double percentualConcluido)
+        public void AlterarPercentualConcluido(decimal percentualConcluido)
         {
-            lblPorcentagemConcluida.Text = $"{percentualConcluido}% Conluído";
+            lblPorcentagemConcluida.Text = $"{Math.Round(percentualConcluido,2)}% Conluído";
         }
-        //public void AlterarCorDeFundoDasTarefasConcluidas()
-        //{
-        //    foreach (var item in checkListItemsDaTarefa.Items)
-        //    {
-        //        if (checkListItemsDaTarefa.CheckedItems.Contains(item))
-        //        {
-        //            checkListItemsDaTarefa.Enabled = false;
-        //        }
-        //    }
-        //}
+      
+
+
         public List<Item> RetornarItemsChecados()
         {
             List<Item> itensChecados = new List<Item>();
@@ -52,5 +47,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
             return itensChecados;
         }
+
+
     }
 }

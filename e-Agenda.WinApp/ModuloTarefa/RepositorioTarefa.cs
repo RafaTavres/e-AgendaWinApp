@@ -1,11 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Dominio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -47,34 +41,46 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 {
                     if(itemAtual == itemCheckado)
                     {
-                        itemAtual.estahConcluida = true;
-                        itemAtual.dataConclusao = DateTime.Now.Date;
-                    }
-                    else
-                    {
-                        itemAtual.estahConcluida = false;
-                        itemAtual.dataConclusao = DateTime.MinValue;
-                    }
+                        if(itemAtual.estahConcluida == false)
+                        {
+                            itemAtual.estahConcluida = true;
+                            itemAtual.dataConclusao = DateTime.Now.Date;
+                        }
+                    }                   
                 }
             }           
         }
 
-        public double CalculaPorcentagemConcluida(List<Item> itemsCheckados,List<Item> itemsAtuais)
+
+        public List<Item> RetornarItemsConcluidos(List<Item> itensChecados)
         {
-            double porcentagem = 0;
+            List<Item> itensConcluidos = new();
+            foreach (var item in itensChecados)
+            {
+                if (item.estahConcluida == true)
+                {
+                    itensConcluidos.Add(item);
+                }
+            }
+            return itensConcluidos;
+        }
+
+
+        public decimal CalculaPorcentagemConcluida(Tarefa tarefaAtual, List<Item> itemsCheckados,List<Item> itemsAtuais)
+        {
             try
             {
-                double f = itemsAtuais.Count() / itemsCheckados.Count();
-                porcentagem = 100 / f;
+                decimal f = Convert.ToDecimal(itemsAtuais.Count()) / Convert.ToDecimal(itemsCheckados.Count());
+                tarefaAtual.percentualConcluido = 100 / f;
             }
             catch(DivideByZeroException)
             {
-                
+                return tarefaAtual.percentualConcluido;
             }                         
-            return porcentagem;
+            return tarefaAtual.percentualConcluido;
         }
 
-        public void FinalizaTarefa(Tarefa tarefa)
+        public void VerificaTarefaConcluida(Tarefa tarefa)
         {
             if (tarefa.percentualConcluido == 100)
             {

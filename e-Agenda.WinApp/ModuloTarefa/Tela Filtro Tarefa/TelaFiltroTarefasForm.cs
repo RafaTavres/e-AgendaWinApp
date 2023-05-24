@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso.Dominio;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso.Dominio;
 using e_Agenda.WinApp.ModuloTarefa.Dominio;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace e_Agenda.WinApp.ModuloTarefa.Tela_Filtro_Tarefa
         public TelaFiltroTarefasForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
         }
         public PrioridadeTarefaEnum PrioridadeTarefa
         {

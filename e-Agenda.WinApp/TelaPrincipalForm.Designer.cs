@@ -250,8 +250,8 @@
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "TelaPrincipalForm";
-            ShowIcon = false;
             Text = "e-Agenda 2.0";
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();

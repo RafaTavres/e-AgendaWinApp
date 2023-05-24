@@ -1,4 +1,6 @@
-﻿namespace e_Agenda.WinApp.ModuloTarefa
+﻿using e_Agenda.WinApp.Compartilhado;
+
+namespace e_Agenda.WinApp.ModuloTarefa
 {
     public partial class TelaAdicionarItemsNaTarefaForm : Form
     {
@@ -6,6 +8,7 @@
         public TelaAdicionarItemsNaTarefaForm()
         {
             InitializeComponent();
+            this.ConfigurarDialog();
         }
 
         public Item Item

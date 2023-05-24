@@ -18,12 +18,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public DateTime dataCriacao;
         public DateTime dataPrazo;
         public DateTime dataConclusao;
-        public double percentualConcluido;
+        public decimal percentualConcluido;
         public PrioridadeTarefaEnum prioridade;
         public bool estahConcluida;
         public List<Item> itens;
 
-        public Tarefa(string titulo, string descricao, DateTime dataCriacao, double percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida, DateTime dataPrazo)
+        public Tarefa(string titulo, string descricao, DateTime dataCriacao, decimal percentualConcluido, PrioridadeTarefaEnum prioridade, bool estahConcluida, DateTime dataPrazo)
         {
             this.titulo = titulo;
             this.descricao = descricao;
