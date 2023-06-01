@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
+    [Serializable]
     public class Compromisso : EntidadeBase<Compromisso>
     {
         public string assunto;
@@ -19,6 +20,10 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public DateTime horaDoTermino;
         public Contato contatoRelacionado;
         public bool ehRemoto;
+
+        public Compromisso()
+        {
+        }
 
         public Compromisso(string assunto, string local, DateTime data, DateTime horaDeInicio, DateTime horaDoTermino, bool ehRemoto,Contato contato)
         {

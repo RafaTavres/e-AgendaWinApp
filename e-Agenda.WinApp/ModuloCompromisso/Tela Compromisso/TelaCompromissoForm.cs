@@ -17,20 +17,32 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             set
             {
-                txtId.Text = value.id.ToString();
-                txtAssunto.Text = value.assunto;
-                txtLocalPresencial.Text = value.local;
-                txtLocalRemoto.Text = value.local;
-                datePickerCompromisso.Value = value.data;
-                datePickerHoraDeInicio.Value = value.horaDeInicio;
-                datePickerHoraTermino.Value = value.horaDoTermino;
+                ConfigurarTela(value);
             }
             get
             {
                 return compromisso;
             }
         }
-        public void AdicionaContatosAComboBox(RepositorioContato repositorioContato)
+
+        private void ConfigurarTela(Compromisso compromissso)
+        {
+            txtId.Text = compromissso.id.ToString();
+            txtAssunto.Text = compromissso.assunto;
+            txtLocalPresencial.Text = compromissso.local;
+            txtLocalRemoto.Text = compromissso.local;
+            datePickerCompromisso.Value = compromissso.data;
+            datePickerHoraDeInicio.Value = compromissso.horaDeInicio;
+            datePickerHoraTermino.Value = compromissso.horaDoTermino;
+
+            if (compromissso.contatoRelacionado != null)
+            {
+                checkBoxTemContato.Checked = true;
+                cmbBoxListaDeContatos.SelectedItem = compromissso.contatoRelacionado;
+            }
+        }
+
+        public void AdicionaContatosAComboBox(IRepositorioContato repositorioContato)
         {
             foreach (Contato item in repositorioContato.RetornarTodos())
             {

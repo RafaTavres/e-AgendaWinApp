@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Agenda.WinApp.ModuloDespesas
+namespace e_Agenda.WinApp.ModuloDespesas.ModuloCategoria
 {
     public class ControladorCategoria : ControladorBase
     {
-        private RepositorioCategoria repositorioCategoria;
-        private RepositorioDespesa repositorioDespesa;
+        private IRepositorioCategoria repositorioCategoria;
+        private IRepositorioDespesa repositorioDespesa;
         private TabelaCategoriasControl tabelaCategoria;
 
 
 
-        public ControladorCategoria(RepositorioBase<Categoria> repositorio, RepositorioDespesa repositorioDespesa)
+        public ControladorCategoria(IRepositorioCategoria repositorio, IRepositorioDespesa repositorioDespesa)
         {
-            repositorioCategoria = (RepositorioCategoria)repositorio;
+            repositorioCategoria = repositorio;
             this.repositorioDespesa = repositorioDespesa;
         }
 

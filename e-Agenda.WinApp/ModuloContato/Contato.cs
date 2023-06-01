@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
+    [Serializable]
     public class Contato : EntidadeBase<Contato>
     {
         public string nome { get; set; }
@@ -15,6 +16,10 @@ namespace e_Agenda.WinApp.ModuloContato
         public string cargo;
         public string empresa;
 
+        public Contato()
+        {
+            
+        }
         public Contato(string nome, string telefone, string email, string cargo, string empresa)
         {
             this.nome = nome;
@@ -63,6 +68,9 @@ namespace e_Agenda.WinApp.ModuloContato
 
             if (string.IsNullOrEmpty(telefone))
                 erros.Add("O campo 'telefone' é obrigatório");
+
+            if (!email.Contains('@'))
+                erros.Add("O campo 'email' é deve possuir um @");
 
             if (string.IsNullOrEmpty(email))
                 erros.Add("O campo 'email' é obrigatório");

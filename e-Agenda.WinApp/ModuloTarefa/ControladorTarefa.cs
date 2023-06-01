@@ -15,10 +15,10 @@ namespace e_Agenda.WinApp.ModuloTarefa
     public class ControladorTarefa : ControladorBase
     {
         private TabelaTarefaControl tabelaTarefa;
-        private RepositorioTarefa repositorioTarefas;
-        public ControladorTarefa(RepositorioBase<Tarefa> repositorio)
+        private IRepositorioTarefa repositorioTarefas;
+        public ControladorTarefa(IRepositorioTarefa repositorio)
         {
-            repositorioTarefas = (RepositorioTarefa)repositorio;
+            repositorioTarefas = repositorio;
         }
         public override string ToolTipInserir  =>  "Inserir nova Tarefa";  
 

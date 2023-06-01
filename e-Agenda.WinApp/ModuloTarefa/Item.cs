@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
+    [Serializable]
     public class Item : EntidadeBase<Item>
     {
         public string titulo;
@@ -15,6 +16,10 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public DateTime dataConclusao;
         public bool estahConcluida;
 
+        public Item()
+        {
+            
+        }
         public Item(string titulo, string descricao, DateTime dataCriacao, DateTime dataConclusao, bool estahConcluida)
         {
             this.titulo = titulo;

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Agenda.WinApp.ModuloDespesas
+namespace e_Agenda.WinApp.ModuloDespesas.ModuloCategoria
 {
-    public class RepositorioCategoria : RepositorioBase<Categoria>
+    public class RepositorioCategoriaEmMemoria : RepositorioBaseEmMemoria<Categoria>, IRepositorioCategoria
     {
-        public RepositorioCategoria(List<Categoria> listaDeEntidades)
+        public RepositorioCategoriaEmMemoria(List<Categoria> listaDeEntidades)
         {
             listaEntidades = listaDeEntidades;
         }

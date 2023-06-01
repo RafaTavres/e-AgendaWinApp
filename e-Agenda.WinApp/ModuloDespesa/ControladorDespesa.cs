@@ -1,24 +1,19 @@
-﻿using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloDespesas.Tela_Despesa;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using e_Agenda.WinApp.ModuloDespesas.Tela_Despesa;
+using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
     public class ControladorDespesa : ControladorBase
     {
-        private RepositorioDespesa repositorioDespesa;
-        private RepositorioCategoria repositorioCategoria;
+        private IRepositorioDespesa repositorioDespesa;
+        private IRepositorioCategoria repositorioCategoria;
         private TabelaDespesasControl tabelaDespesa;
 
 
 
-        public ControladorDespesa(RepositorioBase<Despesa> repositorio, RepositorioCategoria repositorioCategoria)
+        public ControladorDespesa(IRepositorioDespesa repositorio, IRepositorioCategoria repositorioCategoria)
         {
-            repositorioDespesa = (RepositorioDespesa)repositorio;
+            repositorioDespesa = repositorio;
             this.repositorioCategoria = repositorioCategoria;
         }
 

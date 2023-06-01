@@ -2,6 +2,7 @@ using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesas;
+using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
 using e_Agenda.WinApp.ModuloTarefa;
 
 namespace e_Agenda.WinApp
@@ -10,11 +11,15 @@ namespace e_Agenda.WinApp
     {
         UserControl listagem;
         private ControladorBase controlador;
-        private RepositorioContato repositorioContato = new RepositorioContato(new List<Contato>());
-        private RepositorioCompromisso repositorioCompromisso = new RepositorioCompromisso(new List<Compromisso>());
-        private RepositorioTarefa repositorioTarefa = new RepositorioTarefa(new List<Tarefa>());
-        private RepositorioDespesa repositorioDespesa = new RepositorioDespesa(new List<Despesa>());
-        private RepositorioCategoria repositorioCategoria = new RepositorioCategoria(new List<Categoria>());
+
+        static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
+
+        private IRepositorioContato repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
+        private IRepositorioCompromisso repositorioCompromisso = new RepositorioCompromissoEmArquivo(contextoDados);
+        private IRepositorioCategoria repositorioCategoria = new RepositorioCategoriaEmArquivo(contextoDados);
+        private IRepositorioTarefa repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
+        private IRepositorioDespesa repositorioDespesa = new RepositorioDespesaEmArquivo(contextoDados);
+
 
         private static TelaPrincipalForm telaPrincipal;
         public TelaPrincipalForm()

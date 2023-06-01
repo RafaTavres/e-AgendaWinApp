@@ -1,10 +1,4 @@
-﻿using e_Agenda.WinApp.ModuloContato;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace e_Agenda.WinApp.Compartilhado
 {
     public abstract class ControladorBase
@@ -31,24 +25,16 @@ namespace e_Agenda.WinApp.Compartilhado
         public abstract void Editar();
 
         public virtual void Filtrar()
-        {
-
-        }
+        {}
 
         public virtual void VerCategoriasDasDespesas()
-        {
-
-        }
+        {}
 
         public abstract void Deletar();
         public virtual void AdicionarItemsNaListaDeTarefa()
-        {
-
-        }
+        {}
         public virtual void EditarItensDaTarefa()
-        {
-
-        }
+        {}
         public abstract UserControl ObterListagem();
 
         public abstract string ObterTipoCadastro();

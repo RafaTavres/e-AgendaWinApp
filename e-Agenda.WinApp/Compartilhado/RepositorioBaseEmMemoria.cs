@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class RepositorioBase<TEntidade> where TEntidade : EntidadeBase<TEntidade>
+    public abstract class RepositorioBaseEmMemoria<TEntidade> where TEntidade : EntidadeBase<TEntidade>
     {
         protected int id = 1;
         protected List<TEntidade> listaEntidades = new List<TEntidade>();

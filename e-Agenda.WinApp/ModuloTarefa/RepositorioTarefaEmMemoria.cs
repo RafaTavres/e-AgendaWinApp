@@ -3,15 +3,26 @@ using e_Agenda.WinApp.ModuloTarefa.Dominio;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    internal class RepositorioTarefa : RepositorioBase<Tarefa>
+    internal class RepositorioTarefaEmMemoria : RepositorioBaseEmMemoria<Tarefa>, IRepositorioTarefa
     {
-        public RepositorioTarefa(List<Tarefa> listaDeEntidades)
+        public RepositorioTarefaEmMemoria(List<Tarefa> listaDeEntidades)
         {
             listaEntidades = listaDeEntidades;
         }
         public override Tarefa Busca(int id)
         {
             return base.Busca(id);
+        }
+
+
+        public void Editar(int id, Tarefa tarefa)
+        {
+            Atualizar(id,tarefa);
+        }
+
+        public void Excluir(Tarefa tarefaSelecionada)
+        {
+            Deletar(tarefaSelecionada.id);
         }
 
 
@@ -93,9 +104,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
             return itensConcluidos;
         }
-
-
-        
 
     }
 }

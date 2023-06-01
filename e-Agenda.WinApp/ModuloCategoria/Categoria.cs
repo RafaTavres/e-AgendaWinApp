@@ -5,13 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Agenda.WinApp.ModuloDespesas
+namespace e_Agenda.WinApp.ModuloDespesas.ModuloCategoria
 {
+    [Serializable]
     public class Categoria : EntidadeBase<Categoria>
     {
         public Categoria(string titulo)
         {
             this.titulo = titulo;
+        }
+
+        public Categoria()
+        {
         }
 
         public string titulo;

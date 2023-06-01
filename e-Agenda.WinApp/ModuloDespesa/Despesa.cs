@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp;
+using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesas.Dominio;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -6,6 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
+    [Serializable]
     public class Despesa : EntidadeBase<Despesa>
     {
         public string descricao;
@@ -18,6 +20,10 @@ namespace e_Agenda.WinApp.ModuloDespesas
 
         public List<Categoria> categorias;
 
+        public Despesa()
+        {
+            
+        }
         public Despesa(string descricao, decimal? valor, DateTime data, string? formaDePagamento, List<Categoria> categorias)
         {
             this.descricao = descricao;

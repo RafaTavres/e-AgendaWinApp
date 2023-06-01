@@ -9,7 +9,7 @@ namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
     public partial class TelaDespesaForm : Form
     {
         private Despesa despesa;
-        RepositorioCategoria repositorioCategoria;
+        IRepositorioCategoria repositorioCategoria;
         public Despesa Despesa
         {
             set
@@ -26,7 +26,7 @@ namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
         }
 
 
-        public TelaDespesaForm(RepositorioCategoria repositorioCategoria)
+        public TelaDespesaForm(IRepositorioCategoria repositorioCategoria)
         {
             InitializeComponent();
             this.repositorioCategoria = repositorioCategoria;

@@ -10,12 +10,12 @@ namespace e_Agenda.WinApp.ModuloContato
 {
     public class ControladorContato : ControladorBase
     {
-        private RepositorioContato repositorioContato;
+        private IRepositorioContato repositorioContato;
         private TabelaContatoControl tabelaContato;
 
-        public ControladorContato(RepositorioBase<Contato> repositorio)
+        public ControladorContato(IRepositorioContato repositorio)
         {
-            repositorioContato = (RepositorioContato)repositorio;
+            repositorioContato = repositorio;
         }
 
         public override string ToolTipInserir  => "Inserir novo Contato"; 

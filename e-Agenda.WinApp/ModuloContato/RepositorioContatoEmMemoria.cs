@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
-    public class RepositorioContato : RepositorioBase<Contato>
+    public class RepositorioContatoEmMemoria : RepositorioBaseEmMemoria<Contato>, IRepositorioContato
     {
-        public RepositorioContato(List<Contato> listaDeEntidades)
+        public RepositorioContatoEmMemoria(List<Contato> listaDeEntidades)
         {
             listaEntidades = listaDeEntidades;
         }

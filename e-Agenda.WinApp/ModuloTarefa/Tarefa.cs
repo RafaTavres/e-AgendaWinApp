@@ -1,18 +1,10 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
+﻿
 using e_Agenda.WinApp.ModuloTarefa.Dominio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-
+    [Serializable]
     public class Tarefa : EntidadeBase<Tarefa>
     {
         public string titulo;
@@ -24,6 +16,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public PrioridadeTarefaEnum prioridade;
         public StatusTarefaEnum statusDaTarefa;
         public List<Item> itens;
+
+        public Tarefa()
+        {
+            
+        }
 
         public Tarefa(string titulo, string descricao, DateTime dataCriacao, decimal percentualConcluido, PrioridadeTarefaEnum prioridade, StatusTarefaEnum statusDaTarefa, DateTime dataPrazo)
         {

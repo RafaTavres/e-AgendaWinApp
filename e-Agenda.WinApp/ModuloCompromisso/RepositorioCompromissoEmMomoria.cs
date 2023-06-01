@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class RepositorioCompromisso : RepositorioBase<Compromisso>
+    public class RepositorioCompromissoEmMomoria : RepositorioBaseEmMemoria<Compromisso>, IRepositorioCompromisso
     {
-        public RepositorioCompromisso(List<Compromisso> listaDeEntidades)
+        public RepositorioCompromissoEmMomoria(List<Compromisso> listaDeEntidades)
         {
             listaEntidades = listaDeEntidades;
         }
