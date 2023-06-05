@@ -1,5 +1,5 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloTarefa.Dominio;
+﻿using e_Agenda.Dominio.ModuloTarefa;
+
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -21,17 +21,22 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             set
             {
-                txtId.Text = value.id.ToString();
-                txtTitulo.Text = value.titulo;
-                datePickerDataInicio.Value = value.dataCriacao;
-                datePickerDataPrazo.Value = value.dataPrazo;
-                txtDescricao.Text = value.descricao;
+                ConfigurarTela(value);
 
             }
             get
             {
                 return tarefa;
             }
+        }
+
+        private void ConfigurarTela(Tarefa value)
+        {
+            txtId.Text = value.id.ToString();
+            txtTitulo.Text = value.titulo;
+            datePickerDataInicio.Value = value.dataCriacao;
+            datePickerDataPrazo.Value = value.dataPrazo;
+            txtDescricao.Text = value.descricao;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)

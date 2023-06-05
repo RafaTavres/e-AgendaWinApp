@@ -1,9 +1,25 @@
-using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.Infra.Data.Arquivo.Compartilhado;
+using e_Agenda.Infra.Data.Arquivo.ModuloCategoria;
+using e_Agenda.Infra.Data.Arquivo.ModuloCompromisso;
+using e_Agenda.Infra.Data.Arquivo.ModuloDespesas;
+using e_Agenda.Infra.Data.Arquivo.ModuloTarefa;
+using e_Agenda.Infra.Data.Arquivo.ModuloContato;
+
+
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesas;
-using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
+using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloTarefa;
+
+
+using e_Agenda.Dominio.ModuloDespesas;
+using e_Agenda.Dominio.ModuloTarefa;
+using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Dominio.ModuloContato;
+using e_Agenda.Dominio.ModuloCategoria;
+
+
 
 namespace e_Agenda.WinApp
 {

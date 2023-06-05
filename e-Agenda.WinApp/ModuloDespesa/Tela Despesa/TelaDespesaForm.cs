@@ -1,10 +1,7 @@
-﻿using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloDespesas.Dominio;
-using System.Collections.Generic;
-using System.Data;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloDespesas;
 
-
-namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
+namespace e_Agenda.WinApp.ModuloDespesas
 {
     public partial class TelaDespesaForm : Form
     {
@@ -14,10 +11,7 @@ namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
         {
             set
             {
-                txtId.Text = value.id.ToString();
-                txtDescricao.Text = value.descricao;
-                txtValor.Text = value.valor.ToString();
-                datePickerDataDaDespesa.Value = value.data.Date;
+                ConfigurarTela(value);
             }
             get
             {
@@ -25,6 +19,13 @@ namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
             }
         }
 
+        private void ConfigurarTela(Despesa value)
+        {
+            txtId.Text = value.id.ToString();
+            txtDescricao.Text = value.descricao;
+            txtValor.Text = value.valor.ToString();
+            datePickerDataDaDespesa.Value = value.data.Date;
+        }
 
         public TelaDespesaForm(IRepositorioCategoria repositorioCategoria)
         {

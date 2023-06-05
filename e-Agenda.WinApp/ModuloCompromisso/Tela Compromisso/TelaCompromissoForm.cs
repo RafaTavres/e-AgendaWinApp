@@ -1,6 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
-using System.Windows.Forms;
+﻿using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Dominio.ModuloContato;
+
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {

@@ -1,14 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCompromisso;
-using e_Agenda.WinApp.ModuloCompromisso.Dominio;
-using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloTarefa.Dominio;
+﻿using e_Agenda.Dominio.ModuloTarefa;
 using e_Agenda.WinApp.ModuloTarefa.Tela_Filtro_Tarefa;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {

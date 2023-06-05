@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
+﻿
+using e_Agenda.Dominio.ModuloCategoria;
 
-namespace e_Agenda.WinApp.ModuloDespesas
+
+namespace e_Agenda.WinApp.ModuloCategoria
 {
     public partial class TelaCategoriaForm : Form
     {
@@ -24,13 +17,18 @@ namespace e_Agenda.WinApp.ModuloDespesas
         {
             set
             {
-                txtId.Text = value.id.ToString();
-                txtTitulo.Text = value.titulo;
+                ConfigurarTela(value);
             }
             get
             {
                 return categoria;
             }
+        }
+
+        private void ConfigurarTela(Categoria value)
+        {
+            txtId.Text = value.id.ToString();
+            txtTitulo.Text = value.titulo;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)

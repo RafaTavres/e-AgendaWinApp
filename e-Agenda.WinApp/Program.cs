@@ -1,6 +1,6 @@
 
 using e_Agenda.WinApp.ModuloDespesas;
-using e_Agenda.WinApp.ModuloDespesas.Tela_Vizualização_Despesas_Por_Categorias;
+using e_Agenda.WinApp.ModuloCategoria;
 
 namespace e_Agenda.WinApp
 {

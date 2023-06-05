@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using e_Agenda.WinApp;
-using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloDespesas;
 
-namespace e_Agenda.WinApp.ModuloDespesas.Tela_Vizualização_Despesas_Por_Categorias
+
+namespace e_Agenda.WinApp.ModuloCategoria
 {
     public partial class TelaVisualizacaoDespesaCategoriaForm : Form
     {

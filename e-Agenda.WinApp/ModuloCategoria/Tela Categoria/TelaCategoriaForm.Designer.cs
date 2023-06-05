@@ -1,4 +1,4 @@
-﻿namespace e_Agenda.WinApp.ModuloDespesas
+﻿namespace e_Agenda.WinApp.ModuloCategoria
 {
     partial class TelaCategoriaForm
     {

@@ -1,5 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloDespesas.Tela_Despesa;
-using e_Agenda.WinApp.ModuloDespesas.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloDespesas;
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {

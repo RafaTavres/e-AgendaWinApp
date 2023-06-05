@@ -1,4 +1,4 @@
-﻿namespace e_Agenda.WinApp.ModuloDespesas.Tela_Despesa
+﻿namespace e_Agenda.WinApp.ModuloDespesas
 {
     partial class TelaDespesaForm
     {

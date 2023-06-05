@@ -199,7 +199,7 @@
             btnAdicionatNaLista.Name = "btnAdicionatNaLista";
             btnAdicionatNaLista.Padding = new Padding(7);
             btnAdicionatNaLista.Size = new Size(50, 50);
-            btnAdicionatNaLista.Text = "toolStripButton4";
+            btnAdicionatNaLista.Text = "Adiconat Items na Tarefa";
             btnAdicionatNaLista.Click += btnAdicionatNaLista_Click;
             // 
             // btnEditarItensDaTarefa
@@ -211,7 +211,7 @@
             btnEditarItensDaTarefa.Name = "btnEditarItensDaTarefa";
             btnEditarItensDaTarefa.Padding = new Padding(7);
             btnEditarItensDaTarefa.Size = new Size(42, 50);
-            btnEditarItensDaTarefa.Text = "toolStripButton4";
+            btnEditarItensDaTarefa.Text = "Editar Itens da Tarefa";
             btnEditarItensDaTarefa.Click += btnEditarItensDaTarefa_Click;
             // 
             // toolStripSeparator3
@@ -228,7 +228,7 @@
             btnVizualizarDespesasDasCategorias.Name = "btnVizualizarDespesasDasCategorias";
             btnVizualizarDespesasDasCategorias.Padding = new Padding(7);
             btnVizualizarDespesasDasCategorias.Size = new Size(42, 50);
-            btnVizualizarDespesasDasCategorias.Text = "toolStripButton4";
+            btnVizualizarDespesasDasCategorias.Text = "Visualizar Despesas das Categorias";
             btnVizualizarDespesasDasCategorias.Click += btnVizualizarDespesasDasCategorias_Click;
             // 
             // toolStripSeparator4

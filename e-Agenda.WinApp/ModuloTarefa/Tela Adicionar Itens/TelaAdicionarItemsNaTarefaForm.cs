@@ -1,4 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
+﻿using e_Agenda.Dominio.ModuloTarefa;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -15,16 +15,21 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             set
             {
-                txtId.Text = value.id.ToString();
-                txtTituloDoItem.Text = value.titulo;
-                txtDescricaoDOItem.Text = value.descricao;
-                datePickerDataInicioDoItem.Value = value.dataCriacao;
-                datePickerDataDeConclusaoItem.Value = value.dataConclusao;
+                ConfigurarTela(value);
             }
             get
             {
                 return item;
             }
+        }
+
+        private void ConfigurarTela(Item value)
+        {
+            txtId.Text = value.id.ToString();
+            txtTituloDoItem.Text = value.titulo;
+            txtDescricaoDOItem.Text = value.descricao;
+            datePickerDataInicioDoItem.Value = value.dataCriacao;
+            datePickerDataDeConclusaoItem.Value = value.dataConclusao;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
