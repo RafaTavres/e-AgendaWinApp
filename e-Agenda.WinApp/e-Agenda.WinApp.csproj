@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\e-Agenda.Dominio\e-Agenda.Dominio.csproj" />
+    <ProjectReference Include="..\e-Agenda.Infra.Dados.Sql\e-Agenda.Infra.Data.Sql.csproj" />
     <ProjectReference Include="..\e-Agenda.Infra.Data.Arquivo\e-Agenda.Infra.Data.Arquivo.csproj" />
   </ItemGroup>
 

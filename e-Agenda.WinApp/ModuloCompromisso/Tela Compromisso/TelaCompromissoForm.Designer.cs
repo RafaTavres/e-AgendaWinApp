@@ -216,7 +216,7 @@
             // 
             btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGravar.DialogResult = DialogResult.OK;
-            btnGravar.Location = new Point(377, 371);
+            btnGravar.Location = new Point(389, 371);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 41);
             btnGravar.TabIndex = 23;
@@ -228,7 +228,7 @@
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(458, 371);
+            btnCancelar.Location = new Point(470, 371);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 41);
             btnCancelar.TabIndex = 24;
@@ -239,7 +239,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(552, 424);
+            ClientSize = new Size(564, 424);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(txtId);

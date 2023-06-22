@@ -20,6 +20,7 @@ using e_Agenda.Dominio.ModuloContato;
 using e_Agenda.Dominio.ModuloCategoria;
 
 
+using e_Agenda.Infra.Dados.Sql.ModuloContato;
 
 namespace e_Agenda.WinApp
 {
@@ -30,7 +31,9 @@ namespace e_Agenda.WinApp
 
         static ContextoDados contextoDados = new ContextoDados(carregarDados: true);
 
-        private IRepositorioContato repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
+
+        // private IRepositorioContato repositorioContato = new RepositorioContatoEmArquivo(contextoDados);
+        private IRepositorioContato repositorioContato = new RepositorioContatoSql();
         private IRepositorioCompromisso repositorioCompromisso = new RepositorioCompromissoEmArquivo(contextoDados);
         private IRepositorioCategoria repositorioCategoria = new RepositorioCategoriaEmArquivo(contextoDados);
         private IRepositorioTarefa repositorioTarefa = new RepositorioTarefaEmArquivo(contextoDados);
