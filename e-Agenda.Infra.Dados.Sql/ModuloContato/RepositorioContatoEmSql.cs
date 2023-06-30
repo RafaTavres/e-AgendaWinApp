@@ -17,7 +17,7 @@ namespace e_Agenda.Infra.Dados.Sql.ModuloContato
                 VALUES 
                     (
                         @NOME,
-                        @T
+                        @TELEFONE
                     );
 
              select SCOPE_IDENTITY();";
@@ -44,8 +44,8 @@ namespace e_Agenda.Infra.Dados.Sql.ModuloContato
 
         public override string SqlEditar => @"UPDATE [TBContato]
 		                        SET
-			                        [Nome] = @NOME
-			                        [Telefone] = @TELEFONE
+			                        [NOME] = @NOME,
+			                        [TELEFONE] = @TELEFONE
 
 		                        WHERE 
 			                        [ID] = @ID;
@@ -70,7 +70,7 @@ namespace e_Agenda.Infra.Dados.Sql.ModuloContato
         {
             comandoEditar.Parameters.AddWithValue("ID", novoContato.id);
             comandoEditar.Parameters.AddWithValue("NOME", novoContato.nome);
-            comandoEditar.Parameters.AddWithValue("T", novoContato.telefone);
+            comandoEditar.Parameters.AddWithValue("TELEFONE", novoContato.telefone);
         
         }
     }

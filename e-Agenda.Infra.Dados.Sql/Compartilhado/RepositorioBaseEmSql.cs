@@ -1,11 +1,6 @@
 ﻿using e_Agenda.Dominio.Compartilhado;
-using e_Agenda.Dominio.ModuloContato;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace e_Agenda.Infra.Dados.Sql.Compartilhado
 {
@@ -27,20 +22,16 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
 
         public void Atualizar(int id, TEntidade entidade)
         {
-            SqlConnection conexao = new();
+            SqlConnection conexao = new(ENDERECOBANCO);
             conexao.Open();
-            //criar comando e relaciona com a a conexao
 
             SqlCommand comandoEditar = conexao.CreateCommand();
             comandoEditar.CommandText = SqlEditar;
 
-            //adiciona paramentros
             ConfigurarParametros(comandoEditar, entidade);
 
-            //executo a conex
             comandoEditar.ExecuteNonQuery();
 
-            //fecha a conex
             conexao.Close();
         }
 
@@ -48,13 +39,11 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
         {
             SqlConnection conexao = new(ENDERECOBANCO);
             conexao.Open();
-            //criar comando e relaciona com a a conexao
 
             SqlCommand comandoSelecao = conexao.CreateCommand();
             comandoSelecao.CommandText = SqlBuscaId;
-            //adiciona paramentros
+
             comandoSelecao.Parameters.AddWithValue("ID", id);
-            // Executo o comando criado
 
             SqlDataReader leitorEntidades = comandoSelecao.ExecuteReader();
 
@@ -63,7 +52,6 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
             if (leitorEntidades.Read())
                 entidade = ConverterParaEntidade(leitorEntidades);
                       
-            //fecha a conex
             conexao.Close();
 
             return entidade;
@@ -73,19 +61,15 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
         {
             SqlConnection conexao = new(ENDERECOBANCO);
             conexao.Open();
-            //criar comando e relaciona com a a conexao
 
 
             SqlCommand comandoDeletar = conexao.CreateCommand();
             comandoDeletar.CommandText = SqlDeletar;
 
-            //adiciona paramentros
             comandoDeletar.Parameters.AddWithValue("ID", id);
 
-            //executo a conex
             comandoDeletar.ExecuteNonQuery();
 
-            //fecha a conex
             conexao.Close();
         }
 
@@ -96,14 +80,14 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
 
             SqlCommand comandoInserir = conexao.CreateCommand();
             comandoInserir.CommandText = SqlInserir;
-            //adiciona paramentros
+           
             ConfigurarParametros(comandoInserir, novaEntidade);
 
-            //executo a conex
+            
             object id = comandoInserir.ExecuteScalar();
 
             novaEntidade.id = Convert.ToInt32(id);
-            //fecha a conex
+            
             conexao.Close();
         }
 
@@ -111,8 +95,6 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
         {
             SqlConnection conexao = new(ENDERECOBANCO);
             conexao.Open();
-
-
 
             SqlCommand comandoSelecionarTodos = conexao.CreateCommand();
             comandoSelecionarTodos.CommandText = SqlBuscarTodos;
@@ -129,7 +111,6 @@ namespace e_Agenda.Infra.Dados.Sql.Compartilhado
 
             }
 
-            //fecha a conex
             conexao.Close();
 
             return entidades;
